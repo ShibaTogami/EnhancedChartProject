@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Crear proyecto</title>
+    </h:head>
+    <h:body>
+        <h1>Crear proyecto</h1>
+        <h3><h:outputText value="#{proyectoCrearBean.error}" id="ajax1"/></h3>
+        <h:form>
+            Nombre: <h:inputText value="#{proyectoCrearBean.proyecto.nombre}" /> <br/>
+            Participantes: 
+            <table name="ajax2">
+                <ui:repeat var="participante" value="#{proyectoCrearBean.participantes}" varStatus="status">
+                <tr>
+                    <td>#{participante.nickname}</td>
+                </tr>
+                </ui:repeat>
+            </table>
+            
+            Añadir participante: <h:inputText value="#{proyectoCrearBean.participanteNuevo}" /> <br/>
+            <h:commandButton value="Añadir" action="#{proyectoCrearBean.doAñadirParticipante(usuarioBean.usuario)}">
+             <!--   <f:ajax render="ajax1"/>-->
+             <!--   <f:ajax render="ajax1"/>-->
+            </h:commandButton>
+            
+            
+            <br/>
+            Descripci&oacute;n: <h:inputTextarea value="#{proyectoCrearBean.proyecto.descripcion}" /> <br/>
+            
+            <h:commandButton value="Enviar" action="#{proyectoCrearBean.doCrear(usuarioBean.usuario)}" />
+            <h:commandButton value="Cancelar" action="#{proyectoCrearBean.doCancelar()}" />
+        </h:form>
+    </h:body>
+</html>
+

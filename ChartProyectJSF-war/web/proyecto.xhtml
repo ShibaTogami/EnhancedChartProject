@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Proyecto</title>
+    </h:head>
+    <h:body>
+        <h3>Proyecto: #{proyectoBean.proyectoSeleccionado.nombre}</h3><br/>
+        Fecha de creación: #{proyectoBean.proyectoSeleccionado.fechaInicio}<br/>
+        Estado: #{proyectoBean.proyectoSeleccionado.estado}<br/>
+
+        <h:form >
+       
+            Añadir Participante: <br/>
+            <h:inputText value="#{proyectoBean.usuarioBuscar}" rendered="#{proyectoBean.doRenderizar()}" /><br/>
+            <h:commandButton action="#{proyectoBean.buscarUsuarios()}" value="Buscar" rendered="#{proyectoBean.doRenderizar()}" ></h:commandButton><br/>
+            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.usuarioCollection}" var="usuario" >
+                <h:column>
+                    <f:facet name="header">
+                        Participantes
+                    </f:facet>
+                    #{usuario.nickname}
+                </h:column>      
+            </h:dataTable><br/>
+            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection}" var="comentario" >
+                <h:column>
+                    <f:facet name="header">
+                        Comentarios:
+                    </f:facet>
+                    #{comentario.nickname.nickname}<br/>
+                    #{comentario.texto}<br/>
+                </h:column> 
+            </h:dataTable><br/>
+            <h:commandLink value="Añadir Comentario" action="#{comentarioBean.setProyectoBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
+            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.tareaCollection}" var="tarea" >
+                <h:column>
+                    <f:facet name="header">
+                        Tareas:
+                    </f:facet>
+                    <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea)}" value="=#{tarea.nombre}"/><br/>
+
+                </h:column> 
+            </h:dataTable><br/>
+            <h:commandLink value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
+            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection1}" var="timeline" >
+                <h:column>
+                    <f:facet name="header">
+                        Timeline:
+                    </f:facet>
+                    #{timeline.texto}<br/>
+                </h:column> 
+            </h:dataTable><br/>
+            <h:link outcome="editarProyecto" value="editar proyecto" rendered="#{proyectoBean.doRenderizar()}"/><br/>
+            <h:commandButton value="Eliminar Proyecto" action="#{proyectoBean.doEliminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
+            <h:commandButton value="Terminar Proyecto" action="#{proyectoBean.doTerminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
+        </h:form>
+    </h:body>
+</html>

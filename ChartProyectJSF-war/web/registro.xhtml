@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Chart Project: Registro de Usuario</title>
+    </h:head>
+    <h:body>
+        <h1> #{usuarioBean.errorRegistro}</h1>
+        <h1> Registro de usuarios: </h1>
+        <h:form>
+            <br/>Nickname: <h:inputText size="20" value="#{usuarioBean.usuarioIntroducido}"/>
+            <br/>Password: <h:inputSecret size="20" value="#{usuarioBean.passwordIntroducido}"/>
+            <br/>Repetir Password: <h:inputSecret size="20" value="#{usuarioBean.passwordIntroducido2}"/>
+            <br/>Correo Electrónico: <h:inputText size="20" value="#{usuarioBean.emailIntroducido}"/>
+            <br/>Repetir Correo Electronico: <h:inputText size="20" value="#{usuarioBean.emailIntroducido2}"/>
+            <br/>Pregunta Secreta: <h:inputText size="20" value="#{usuarioBean.preguntaSecretaIntroducida}"/>
+            <br/>Respuesta Secreta: <h:inputText size="20" value="#{usuarioBean.respuestaSecretaIntroducida}"/>
+            <br/><h:commandButton  action="#{usuarioBean.doRegistrar()}" value="Enviar"/>
+        </h:form>
+        #{usuarioBean.setErrorRegistro("")}
+    </h:body>
+</html>
+

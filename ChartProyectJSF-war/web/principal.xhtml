@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Proyectos</title>
+    </h:head>
+    <h:body>
+        <h1>Tus proyectos actuales</h1>
+        <h:form>
+        <h:link outcome="nuevoProyecto" value="Crear un nuevo proyecto"/>
+        <table>
+            <ui:repeat var="proyecto" value="#{usuarioBean.usuario.proyectoCollection}" varStatus="status">
+                <tr>
+                    <td><h:commandLink value="#{proyecto.nombre}" action="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}" /></td>
+                </tr>
+            </ui:repeat>
+        </table> <br/>
+        <h:commandButton value="Logout" action="#{usuarioBean.doLogout()}" /> 
+        <h:link value="Perfil" outcome="perfil"/><br/>
+        </h:form>
+    </h:body>
+</html>
