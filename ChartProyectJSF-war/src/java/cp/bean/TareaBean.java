@@ -86,8 +86,10 @@ public class TareaBean {
     
     
 
-    public String doEncontrarTarea(Tarea tarea) {
+    public String doEncontrarTarea(Tarea tarea, ProyectoBean pb) {
         this.setTarea(tarea);
+        this.setProyectoBean(pb);
+        this.setProyecto(this.proyectoBean.proyectoSeleccionado);
         return "tarea";
     }
 
@@ -100,10 +102,9 @@ public class TareaBean {
     }
 
     public String doBorrar() {
-        proyecto.getTareaCollection().remove(tarea);
-        this.proyectoFacade.edit(proyecto);
         this.tareaFacade.remove(tarea);
         this.proyectoBean.proyectoSeleccionado.getTareaCollection().remove(tarea);
+        this.proyectoFacade.edit(this.proyectoBean.proyectoSeleccionado);
         return "proyecto";
     }
 

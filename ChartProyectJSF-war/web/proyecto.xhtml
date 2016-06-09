@@ -39,7 +39,7 @@
                     <f:facet name="header">
                         Tareas:
                     </f:facet>
-                    <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea)}" value="=#{tarea.nombre}"/><br/>
+                    <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea, proyectoBean)}" value="=#{tarea.nombre}"/><br/>
 
                 </h:column> 
             </h:dataTable><br/>
