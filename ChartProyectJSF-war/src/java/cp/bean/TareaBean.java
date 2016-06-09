@@ -27,7 +27,7 @@ import javax.faces.bean.SessionScoped;
  * @author rocio
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class TareaBean {
 
     
@@ -103,6 +103,7 @@ public class TareaBean {
         proyecto.getTareaCollection().remove(tarea);
         this.proyectoFacade.edit(proyecto);
         this.tareaFacade.remove(tarea);
+        this.proyectoBean.proyectoSeleccionado.getTareaCollection().remove(tarea);
         return "proyecto";
     }
 
@@ -120,6 +121,7 @@ public class TareaBean {
     }
     
     public String setProyectoUsuarioBean(ProyectoBean pb, UsuarioBean ub){
+        this.init();
         this.setProyectoBean(pb);
         this.setUsuarioBean(ub);
         this.proyecto = proyectoBean.proyectoSeleccionado;
