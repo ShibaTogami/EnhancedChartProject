@@ -2,31 +2,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Crear/Editar Tarea</title>
     </h:head>
     <h:body>
+        <b:panelGrid columns="1">
+            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
         <h1>Edición de tarea</h1>
-        ID de Tarea: #{tareaBean.tarea.tareaPK.idTarea}<br/>
-        ID de Proyecto: #{tareaBean.tarea.tareaPK.idProyecto}<br/>
+        <h4><b:label text="ID de Tarea" ></b:label> </h4>
+        #{tareaBean.tarea.tareaPK.idTarea}
+        <h4><b:label text="ID de Proyecto" ></b:label> </h4>
+        #{tareaBean.tarea.tareaPK.idProyecto}
         <h:form>
-            Nombre: <h:inputText value="#{tareaBean.tarea.nombre}"/><br/>
-            Descripci&oacute;n: <h:inputTextarea value="#{tareaBean.tarea.descripcion}"/><br/>
-            Estado: <h:selectOneMenu value="#{tareaBean.tarea.estado}">
+            <h4><b:label text="Nombre" ></b:label> </h4>
+            <b:inputText value="#{tareaBean.tarea.nombre}" inline="true" field-size="md" size="24"/>
+            <h4><b:label text="Descripción" ></b:label> </h4>
+            <b:inputTextarea value="#{tareaBean.tarea.descripcion}" inline="true" field-size="lg" />
+            <div >
+            <h4><b:label text="Estado" ></b:label> </h4>
+            <b:selectOneMenu value="#{tareaBean.tarea.estado}" inline="true" >
                 <f:selectItem itemValue ="Por hacer" itemLabel="Por hacer"/>
                 <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
                 <f:selectItem itemValue="Hecho" itemLabel="Hecho"/>
                 <f:selectItem itemValue="Testeando" itemLabel="Testeando"/>
-            </h:selectOneMenu><br/>
-            Prioridad: <h:selectOneMenu value="#{tareaBean.tarea.prioridad}">
+            </b:selectOneMenu>
+            </div>
+            <h4><b:label text="Prioridad" ></b:label> </h4>
+            <b:selectOneMenu value="#{tareaBean.tarea.prioridad}" inline="true">
                 <f:selectItem itemValue="1" itemLabel="Baja"/>
                 <f:selectItem itemValue="2" itemLabel="Media"/>
                 <f:selectItem itemValue="3" itemLabel="Alta"/>
-            </h:selectOneMenu><br/>
+            </b:selectOneMenu>
+            <br/>
 
-            <h:commandButton value="Guardar" action="#{tareaBean.doGuardar()}"/>
+            <b:commandButton value="Guardar" action="#{tareaBean.doGuardar()}"/>
         </h:form>
+            </h:panelGroup>
+        </b:panelGrid>
     </h:body>
 </html>
 
