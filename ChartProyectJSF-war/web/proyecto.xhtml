@@ -17,24 +17,24 @@
                 <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
+        <h:form>
 
         <b:container style="margin-top: 60px;" >
             <b:panelGrid columns="1">
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px;">
-
                     <h3><b:label text="Proyecto: #{proyectoBean.proyectoSeleccionado.nombre}"></b:label></h3><br/>
-                    Fecha de creación: #{proyectoBean.proyectoSeleccionado.fechaInicio}<br/>
-                    Estado: #{proyectoBean.proyectoSeleccionado.estado}<br/>
-                    Descripción:<br/>
+                    <b:iconAwesome name="fa-calendar" style="margin-right: 2px"/>Fecha de creación: #{proyectoBean.proyectoSeleccionado.fechaInicio}<br/>
+                    <b:iconAwesome name="fa-wrench" style="margin-right: 2px"/>Estado: #{proyectoBean.proyectoSeleccionado.estado}<br/>
+                    <b:iconAwesome name="fa-terminal" style="margin-right: 2px"/>Descripción:<br/>
                     #{proyectoBean.proyectoSeleccionado.descripcion}<br/>
                 </h:panelGroup>
             </b:panelGrid>
         </b:container>
         <b:container>
-            <h:form >
+            
                 <b:panelGrid columns="1">
                     <h:panelGroup style="display:block; text-align: left; margin-left: 10px;">
-                        Añadir Participante: <br/>
+                        <b:iconAwesome name="fa-user-plus" style="margin-right: 2px"/>Añadir Participante: <br/>
                         <b:inputText value="#{proyectoBean.usuarioBuscar}" rendered="#{proyectoBean.doRenderizar()}" inline="true" /><br/>
                         <b:commandButton icon-awesome="fa-search" action="#{proyectoBean.buscarUsuarios()}" value="Buscar" rendered="#{proyectoBean.doRenderizar()}" style="margin-bottom: 10px" ></b:commandButton><br/>
                     </h:panelGroup>
@@ -92,8 +92,8 @@
                     </h:panelGroup>
                 </b:panelGrid>
 
-            </h:form>
+            
         </b:container>
-
+        </h:form>
     </h:body>
 </html>

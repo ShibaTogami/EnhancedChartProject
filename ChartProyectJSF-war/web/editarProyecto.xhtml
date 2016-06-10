@@ -19,10 +19,13 @@
             <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
                 <h1>Editando el Proyecto:</h1>
                 <h:form>
-                    ID: #{proyectoBean.proyectoSeleccionado.idProyecto}<br/>
-                    Nombre: <b:inputText value="#{proyectoBean.proyectoSeleccionado.nombre}" fieldSize="md" size="10"/><br/>
-                    Descripcion: <b:inputTextarea value="#{proyectoBean.proyectoSeleccionado.descripcion}" fieldSize="md" size="10"/><br/>
-                    Estado:<br/>
+                    <h4><b:label text="ID" ></b:label> </h4>
+                    #{proyectoBean.proyectoSeleccionado.idProyecto}<br/>
+                    <h4><b:label text="Nombre" ></b:label> </h4> 
+                    <b:inputText value="#{proyectoBean.proyectoSeleccionado.nombre}" fieldSize="md" size="10"/><br/>
+                    <h4><b:label text="Descripcion" ></b:label> </h4> 
+                    <b:inputTextarea value="#{proyectoBean.proyectoSeleccionado.descripcion}" fieldSize="md" size="10"/><br/>
+                    <h4><b:label text="Estado" ></b:label> </h4><br/>
                     <b:selectOneMenu value ="#{proyectoBean.proyectoSeleccionado.estado}" inline="true">
                         <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
                         <f:selectItem itemValue="Testing" itemLabel="Testing"/>
