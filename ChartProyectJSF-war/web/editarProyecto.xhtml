@@ -8,22 +8,29 @@
         <title>Editar Proyecto</title>
     </h:head>
     <h:body>
+        <b:navBar brand="Chart Project" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="principal.xhtml"/>
+                <b:navLink value="Perfil" href="perfil.xhtml"></b:navLink>
+                <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
         <b:panelGrid columns="3">
             <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
-        <h1>Editando el Proyecto:</h1>
-        <h:form>
-            ID: #{proyectoBean.proyectoSeleccionado.idProyecto}<br/>
-            Nombre: <b:inputText value="#{proyectoBean.proyectoSeleccionado.nombre}" fieldSize="md" size="10"/><br/>
-            Descripcion: <b:inputTextarea value="#{proyectoBean.proyectoSeleccionado.descripcion}" fieldSize="md" size="10"/><br/>
-            Estado:<br/>
-            <b:selectOneMenu value ="#{proyectoBean.proyectoSeleccionado.estado}" inline="true">
-                <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
-                <f:selectItem itemValue="Testing" itemLabel="Testing"/>
-                <f:selectItem itemValue="Suspendido" itemLabel="Suspendido"/>
-            </b:selectOneMenu><br/>
-            <b:commandButton icon-awesome="fa-check" look="success" value="Guardar" action="#{proyectoBean.doActualizar()}" style="margin-right: 10px"/>
-            <b:button icon-awesome="fa-times" look="danger" value="Cancelar" outcome="proyecto" />
-        </h:form>
+                <h1>Editando el Proyecto:</h1>
+                <h:form>
+                    ID: #{proyectoBean.proyectoSeleccionado.idProyecto}<br/>
+                    Nombre: <b:inputText value="#{proyectoBean.proyectoSeleccionado.nombre}" fieldSize="md" size="10"/><br/>
+                    Descripcion: <b:inputTextarea value="#{proyectoBean.proyectoSeleccionado.descripcion}" fieldSize="md" size="10"/><br/>
+                    Estado:<br/>
+                    <b:selectOneMenu value ="#{proyectoBean.proyectoSeleccionado.estado}" inline="true">
+                        <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
+                        <f:selectItem itemValue="Testing" itemLabel="Testing"/>
+                        <f:selectItem itemValue="Suspendido" itemLabel="Suspendido"/>
+                    </b:selectOneMenu><br/>
+                    <b:commandButton icon-awesome="fa-check" look="success" value="Guardar" action="#{proyectoBean.doActualizar()}" style="margin-right: 10px"/>
+                    <b:button icon-awesome="fa-times" look="danger" value="Cancelar" outcome="proyecto" />
+                </h:form>
             </h:panelGroup>
         </b:panelGrid>
     </h:body>

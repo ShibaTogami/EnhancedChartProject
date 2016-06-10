@@ -10,28 +10,35 @@
         <title>Proyectos</title>
     </h:head>
     <h:body>
+
         <h2><b:label text="Tus proyectos actuales"></b:label></h2>
         <h:form>
-        
-        <b:panel title="Proyectos" style="width: 100%;">
-            <b:panelGrid columns="4">
-            <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
-            <h:column> 
-                <b:panel title="#{proyecto.nombre}" onclick="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"  look="info" collapsible="true" style="width: 100%;">
-                    <h:commandLink value="#{proyecto.descripcion}" action="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"/>
-                    <f:facet name="footer">
-                        <c:forEach items="#{proyecto.usuarioCollection}" var="participante">
-                            #{participante.nickname}
-                        </c:forEach>
-                    </f:facet>
-                </b:panel>
-                </h:column>
-            </c:forEach>
-            </b:panelGrid>
-        </b:panel>
+            <b:navBar brand="Chart Project" fixed="top" inverse="true">
+                <b:navbarLinks>
+                    <b:navLink value="Inicio" href="principal.xhtml"/>
+                    <b:navLink value="Perfil" href="perfil.xhtml"></b:navLink>
+                    <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
+                </b:navbarLinks>
+            </b:navBar>
+            <b:panel title="Proyectos" style="width: 100%;">
+                <b:panelGrid columns="4">
+                    <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
+                        <h:column> 
+                            <b:panel title="#{proyecto.nombre}" onclick="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"  look="info" collapsible="true" style="width: 100%;">
+                                <h:commandLink value="#{proyecto.descripcion}" action="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"/>
+                                <f:facet name="footer">
+                                    <c:forEach items="#{proyecto.usuarioCollection}" var="participante">
+                                        #{participante.nickname}
+                                    </c:forEach>
+                                </f:facet>
+                            </b:panel>
+                        </h:column>
+                    </c:forEach>
+                </b:panelGrid>
+            </b:panel><br/>
             <b:button value="Crear un nuevo proyecto" iconAwesome="clone" outcome="nuevoProyecto"/><br/>
-        <h:commandButton value="Logout" action="#{usuarioBean.doLogout()}" /> 
-        <h:link value="Perfil" outcome="perfil"/><br/>
+            <h:commandButton value="Logout" action="#{usuarioBean.doLogout()}" /> 
+            <h:link value="Perfil" outcome="perfil"/><br/>
         </h:form>
     </h:body>
 </html>

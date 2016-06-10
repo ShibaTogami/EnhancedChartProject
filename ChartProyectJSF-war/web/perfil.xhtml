@@ -10,52 +10,59 @@
     </h:head>
     #{usuarioBean.control()}
     <h:body>
+        <b:navBar brand="Chart Project" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="principal.xhtml"/>
+                <b:navLink value="Perfil" href="perfil.xhtml"></b:navLink>
+                <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
         <b:container>
-        <h:form>
-            <h1>Perfil de #{usuarioBean.usuario.nickname}</h1>
-            <b:iconAwesome name="envelope"/>
-            Email: #{usuarioBean.usuario.email}<br/>
-            <b:iconAwesome name="globe"/>
-            Web: <a href="#{usuarioBean.usuario.webPersonal}">#{usuarioBean.usuario.webPersonal}</a><br/>
-            <b:iconAwesome name="calendar"/>
-            Miembro desde: #{usuarioBean.usuario.fechaRegistro.day}/#{usuarioBean.usuario.fechaRegistro.month}/#{usuarioBean.usuario.fechaRegistro.year}<br/>
-            <b:iconAwesome name="clock-o"/>
-            Ultima conexión: #{usuarioBean.usuario.ultimaConexion.toGMTString()}<br/>
-            <b:iconAwesome name="bar-chart-o"/>
-            Karma: #{usuarioBean.usuario.karma}<br/><br/>
-            <b:commandButton value="Logout" icon-awesome="fa-sign-out" action="#{usuarioBean.doLogout()}"/><br/><br/>
-            
-            <b:panelGrid columns="2">
-            <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos">
-                <h:column>
-                    <f:facet name="header">
-                        Proyectos
-                    </f:facet>
-                    <h:commandLink action="#{proyectoBean.doMostrar(proyectos.idProyecto, usuarioBean)}" value="#{proyectos.nombre}" />
-                </h:column>
-            </b:dataTable>
-            
-            <b:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera">
-                <h:column>
-                    <f:facet name="header">
-                        Lidera
-                    </f:facet>
-                    <h:commandLink action="#{proyectoBean.doMostrar(lidera.idProyecto, usuarioBean)}" value="#{lidera.nombre}"/>
-                </h:column>
-            </b:dataTable>
-            </b:panelGrid>
-            <br/>
-            
-            <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" paginated="false" page-length="25">
-                <h:column>
-                    <f:facet name="header">
-                        <b:iconAwesome name="comments-o"> Comentarios y actividad reciente del usuario</b:iconAwesome>
-                    </f:facet>
-                    #{comentarios.texto}
-                </h:column>
-            </b:dataTable><br/>
-            <b:button value="Volver a principal" iconAwesome="arrow-circle-left" outcome="principal"/>
-        </h:form>
+            <h:form>
+                <h1>Perfil de #{usuarioBean.usuario.nickname}</h1>
+                <b:iconAwesome name="envelope"/>
+                Email: #{usuarioBean.usuario.email}<br/>
+                <b:iconAwesome name="globe"/>
+                Web: <a href="#{usuarioBean.usuario.webPersonal}">#{usuarioBean.usuario.webPersonal}</a><br/>
+                <b:iconAwesome name="calendar"/>
+                Miembro desde: #{usuarioBean.usuario.fechaRegistro.day}/#{usuarioBean.usuario.fechaRegistro.month}/#{usuarioBean.usuario.fechaRegistro.year}<br/>
+                <b:iconAwesome name="clock-o"/>
+                Ultima conexión: #{usuarioBean.usuario.ultimaConexion.toGMTString()}<br/>
+                <b:iconAwesome name="bar-chart-o"/>
+                Karma: #{usuarioBean.usuario.karma}<br/><br/>
+                <b:commandButton value="Logout" icon-awesome="fa-sign-out" action="#{usuarioBean.doLogout()}"/><br/><br/>
+
+                <b:panelGrid columns="2">
+                    <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos">
+                        <h:column>
+                            <f:facet name="header">
+                                Proyectos
+                            </f:facet>
+                            <h:commandLink action="#{proyectoBean.doMostrar(proyectos.idProyecto, usuarioBean)}" value="#{proyectos.nombre}" />
+                        </h:column>
+                    </b:dataTable>
+
+                    <b:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera">
+                        <h:column>
+                            <f:facet name="header">
+                                Lidera
+                            </f:facet>
+                            <h:commandLink action="#{proyectoBean.doMostrar(lidera.idProyecto, usuarioBean)}" value="#{lidera.nombre}"/>
+                        </h:column>
+                    </b:dataTable>
+                </b:panelGrid>
+                <br/>
+
+                <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" paginated="false" page-length="25">
+                    <h:column>
+                        <f:facet name="header">
+                            <b:iconAwesome name="comments-o"> Comentarios y actividad reciente del usuario</b:iconAwesome>
+                        </f:facet>
+                        #{comentarios.texto}
+                    </h:column>
+                </b:dataTable><br/>
+                <b:button value="Volver a principal" iconAwesome="arrow-circle-left" outcome="principal"/>
+            </h:form>
         </b:container>
     </h:body>
 </html>
