@@ -19,13 +19,13 @@
         </b:navBar>
         <b:container>
             <h:form>
-                <h1>Perfil de #{usuarioBean.usuario.nickname}</h1>
+                <h3><b:label text="Perfil de #{usuarioBean.usuario.nickname}"/></h3><br/>
                 <b:iconAwesome name="envelope"/>
                 Email: #{usuarioBean.usuario.email}<br/>
                 <b:iconAwesome name="globe"/>
                 Web: <a href="#{usuarioBean.usuario.webPersonal}">#{usuarioBean.usuario.webPersonal}</a><br/>
                 <b:iconAwesome name="calendar"/>
-                Miembro desde: #{usuarioBean.usuario.fechaRegistro.day}/#{usuarioBean.usuario.fechaRegistro.month}/#{usuarioBean.usuario.fechaRegistro.year}<br/>
+                Miembro desde: #{usuarioBean.usuario.fechaRegistro.toGMTString()}<br/>
                 <b:iconAwesome name="clock-o"/>
                 Ultima conexión: #{usuarioBean.usuario.ultimaConexion.toGMTString()}<br/>
                 <b:iconAwesome name="bar-chart-o"/>
@@ -36,7 +36,7 @@
                     <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos" style="background-color: white">
                         <h:column>
                             <f:facet name="header">
-                                Proyectos
+                                <h4>Proyectos</h4>
                             </f:facet>
                             <h:commandLink action="#{proyectoBean.doMostrar(proyectos.idProyecto, usuarioBean)}" value="#{proyectos.nombre}" />
                         </h:column>
@@ -45,7 +45,7 @@
                     <b:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera" style="background-color: white">
                         <h:column>
                             <f:facet name="header">
-                                Lidera
+                                <h4>Lidera</h4>
                             </f:facet>
                             <h:commandLink action="#{proyectoBean.doMostrar(lidera.idProyecto, usuarioBean)}" value="#{lidera.nombre}"/>
                         </h:column>
@@ -53,17 +53,23 @@
                 </b:panelGrid>
                 <br/>
 
-                <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" paginated="false" page-length="25" style="background-color: white">
-                    <h:column>
-                        <f:facet name="header">
-                            <b:iconAwesome name="comments-o"> Comentarios y actividad reciente del usuario</b:iconAwesome>
-                        </f:facet>
-                        #{comentarios.texto}
-                    </h:column>
-                </b:dataTable><br/>
-                <b:button value="Volver a principal" iconAwesome="arrow-circle-left" outcome="principal"/>
+                <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" style="background-color: white">
+                <h:column>
+                    <f:facet name="header">
+                        <b:iconAwesome name="comments-o"> Comentarios y actividad del usuario</b:iconAwesome>
+                    </f:facet>
+                    #{comentarios.texto}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Proyecto
+                    </f:facet>
+                    #{comentarios.idProyecto1.nombre}#{comentarios.idProyecto2.nombre}
+                </h:column>
+            </b:dataTable><br/>
+                <b:button value="Volver a principal" iconAwesome="arrow-circle-left" outcome="principal"/><br/>
             </h:form>
-        </b:container>
+        </b:container><br/>
     </h:body>
 </html>
 
