@@ -10,6 +10,13 @@
    
         
      <h:body style="padding: 60px;">
+        <b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Home" href="#"></b:navLink>
+                <b:navLink value="About" href="#about"></b:navLink>
+                <b:navLink value="Contact" href="#contact"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
         <b:container>
             <b:jumbotron>
 
@@ -61,6 +68,7 @@
                                     <b:iconAwesome name="question-circle" />
                                 </f:facet>
                             </b:inputText>
+
                             <b:commandButton look="primary btn-block" size="lg"  value="Enviar" action="#{usuarioBean.doRegistrar()}"/>
 
                         </h:form>
@@ -69,4 +77,3 @@
         </b:container>
     </h:body>
 </html>
-
