@@ -47,6 +47,7 @@ public class UsuarioBean implements Serializable {
     protected String errorRegistro; //contendrá el texto a mostrar en caso de error al registrarse
     protected String errorRecuperar; //contendrá el texto del error por el que falló la recuperación de contraseña
     protected Proyecto proyectoSeleccionado; //proyecto que tiene seleccionado el usuario
+    protected final String cadenaVacia=""; //cadena para usar en comparaciones
     
     public UsuarioBean() {
         errorLogin="";
@@ -264,8 +265,9 @@ public class UsuarioBean implements Serializable {
             salida="crearNuevoPassword.xhtml";
         }
         else
-        {
+        { //reseteamos campos y establecemos error
             usuarioIntroducido=null;
+            respuestaSecretaIntroducida=null;
             errorRecuperar="Error: La respuesta secreta no es correcta.";
             usuario=null;
         }
@@ -337,6 +339,11 @@ public class UsuarioBean implements Serializable {
         
         return "/index.xhtml";    
     }
+
+    public String getCadenaVacia() {
+        return cadenaVacia;
+    }
+
     
     
 }
