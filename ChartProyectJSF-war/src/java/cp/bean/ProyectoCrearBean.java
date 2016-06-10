@@ -123,10 +123,16 @@ public class ProyectoCrearBean {
         if(proyecto.getNombre().equals("")) {
             proyecto.setNombre("[Sin nombre]");
         }
+        if(proyecto.getDescripcion().equals("")) {
+            proyecto.setDescripcion(("[Sin descripción]"));
+        }
         proyectoFacade.create(proyecto);
     
         for (Usuario participante: participantes) {
             List<Proyecto> proyectosUsuarioParticipa = (List<Proyecto>) participante.getProyectoCollection();
+            if(proyectosUsuarioParticipa == null) {
+                proyectosUsuarioParticipa = new ArrayList();
+            }
             proyectosUsuarioParticipa.add(proyecto); //Atento a cuando haces esto
             usuarioFacade.edit(participante);
         }  
