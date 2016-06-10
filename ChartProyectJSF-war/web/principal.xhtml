@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Proyectos</title>
     </h:head>
@@ -11,41 +12,15 @@
         <h2><b:label text="Tus proyectos actuales"></b:label></h2>
         <h:form>
         <h:link outcome="nuevoProyecto" value="Crear un nuevo proyecto"/>
-        <b:panel title="casd">
-        <b:panelGrid columns="4" id="stateGridId">
-  <h:form>
-    <b:panel title="Within form - collapse state is restored"
-      look="primary">
-      <h:outputText value="Panel Content" />
-      <b:messages />
-    </b:panel>
-  </h:form>
-  <b:panel title="outside the form - open after each postback"
-    look="danger">
-    <h:outputText value="Panel Content" />
-    <b:messages />
-  </b:panel>
-            <h:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
-                <h:column>
-                    
-                    #{proyecto.nombre}
+        <b:panel title="Proyectos">
+            <b:panelGrid columns="4">
+            <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
+            <h:column>
+                    <b:panel title="#{proyecto.nombre}" collapsible="true" style="width: 100%;"/>
                 </h:column>
-            </h:dataTable>
-        </b:panelGrid></b:panel>
-        <b:panel title="Proyectos" collapsible="true">
-            <b:panelGrid colSpans="12">
-            <ui:repeat var="proyecto" value="#{usuarioBean.usuario.proyectoCollection}" varStatus="status" >
-                <tr>
-                    <td><b:panel title="#{proyecto.nombre}" collapsible="true" style="width: 25%;"/></td>
-                    <!--<h:commandLink value="#{proyecto.nombre}" action="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}" />-->
-                </tr>
-            </ui:repeat>
+            </c:forEach>
             </b:panelGrid>
         </b:panel>
-        
-        <b:panel title="Proyectos" collapsible="true">
-            
-        </b:panel> <br/>
         <h:commandButton value="Logout" action="#{usuarioBean.doLogout()}" /> 
         <h:link value="Perfil" outcome="perfil"/><br/>
         </h:form>
