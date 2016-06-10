@@ -1,24 +1,82 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Chart Project: Registro de Usuario</title>
     </h:head>
-    <h:body>
-        <h1> #{usuarioBean.errorRegistro}</h1>
-        <h1> Registro de usuarios: </h1>
-        <h:form>
-            <br/>Nickname: <h:inputText size="20" value="#{usuarioBean.usuarioIntroducido}"/>
-            <br/>Password: <h:inputSecret size="20" value="#{usuarioBean.passwordIntroducido}"/>
-            <br/>Repetir Password: <h:inputSecret size="20" value="#{usuarioBean.passwordIntroducido2}"/>
-            <br/>Correo Electrónico: <h:inputText size="20" value="#{usuarioBean.emailIntroducido}"/>
-            <br/>Repetir Correo Electronico: <h:inputText size="20" value="#{usuarioBean.emailIntroducido2}"/>
-            <br/>Pregunta Secreta: <h:inputText size="20" value="#{usuarioBean.preguntaSecretaIntroducida}"/>
-            <br/>Respuesta Secreta: <h:inputText size="20" value="#{usuarioBean.respuestaSecretaIntroducida}"/>
-            <br/><h:commandButton  action="#{usuarioBean.doRegistrar()}" value="Enviar"/>
-        </h:form>
-        #{usuarioBean.setErrorRegistro("")}
+     <h:body style="padding: 60px;">
+        <b:navBar brand="Project name" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Home" href="#"></b:navLink>
+                <b:navLink value="About" href="#about"></b:navLink>
+                <b:navLink value="Contact" href="#contact"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container>
+            <b:jumbotron>
+
+
+                <h:body style="padding-top: 60px; background-color: #add;">
+                    <b:container>
+
+                        <h:form styleClass="form-signin" prependId="false">
+                            <h2 class="form-signin-heading">Registrate, por favor</h2>
+
+                            <b:inputText id="nickname" placeholder="Nickname" size="20" size="20" value="#{usuarioBean.usuarioIntroducido}" >
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="user" />
+                                </f:facet>
+                            </b:inputText>
+
+                            <b:inputSecret id="password" placeholder="Password" type="password" size="20" size="20" value="#{usuarioBean.passwordIntroducido}">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key" />
+                                </f:facet>
+                            </b:inputSecret>
+                            <b:inputSecret id="passwordToValidate" placeholder="Repetir password" type="password" size="20"  size="20" value="#{usuarioBean.passwordIntroducido2}">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="key" />
+                                </f:facet>
+                            </b:inputSecret>
+
+
+                            <b:inputText id="email" placeholder="Correo Electrónico" size="20"  size="20" value="#{usuarioBean.emailIntroducido}">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="fa-envelope" />
+                                </f:facet>
+                            </b:inputText>
+                            <b:inputText id="emailToValidate" placeholder="Repetir Correo Electronico" size="20"  value="#{usuarioBean.emailIntroducido2}">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="fa-envelope-o" />
+                                </f:facet>
+                            </b:inputText>
+
+
+                            <b:inputText id="preguntaSecreta" placeholder="Pregunta Secreta" type="text"  size="20" value="#{usuarioBean.preguntaSecretaIntroducida}">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="question-circle" />
+                                </f:facet>
+                            </b:inputText>
+
+                            <b:inputText id="respuestaSecreta" placeholder="Respuesta Secreta" type="text"  size="20" value="#{usuarioBean.respuestaSecretaIntroducida}">
+                                <f:facet name="prepend">
+                                    <b:iconAwesome name="question-circle" />
+                                </f:facet>
+                            </b:inputText>
+
+
+                            <b:selectBooleanCheckbox value="true" caption="remember me"/>
+                            <b:commandButton look="primary btn-block" size="lg"  value="Enviar" action="#{usuarioBean.doRegistrar()}"/>
+
+                        </h:form>
+                    </b:container>
+                </h:body>
+
+            </b:jumbotron>
+        </b:container>
     </h:body>
 </html>
 
