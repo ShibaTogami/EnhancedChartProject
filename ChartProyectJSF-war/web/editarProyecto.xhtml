@@ -21,8 +21,8 @@
                 <f:selectItem itemValue="Testing" itemLabel="Testing"/>
                 <f:selectItem itemValue="Suspendido" itemLabel="Suspendido"/>
             </b:selectOneMenu><br/>
-            <b:commandButton value="Guardar" action="#{proyectoBean.doActualizar()}"/><br/>
-            <h:link value="Cancelar" outcome="proyecto" /><br/>
+            <b:commandButton icon-awesome="fa-check" look="success" value="Guardar" action="#{proyectoBean.doActualizar()}" style="margin-right: 10px"/>
+            <b:button icon-awesome="fa-times" look="danger" value="Cancelar" outcome="proyecto" />
         </h:form>
             </h:panelGroup>
         </b:panelGrid>

@@ -23,7 +23,7 @@
             <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
             Añadir Participante: <br/>
             <b:inputText value="#{proyectoBean.usuarioBuscar}" rendered="#{proyectoBean.doRenderizar()}" inline="true" /><br/>
-            <b:commandButton action="#{proyectoBean.buscarUsuarios()}" value="Buscar" rendered="#{proyectoBean.doRenderizar()}" ></b:commandButton><br/>
+            <b:commandButton icon-awesome="fa-search" action="#{proyectoBean.buscarUsuarios()}" value="Buscar" rendered="#{proyectoBean.doRenderizar()}" style="margin-bottom: 10px" ></b:commandButton><br/>
             </h:panelGroup>
             </b:panelGrid>
             <b:panelGrid columns="2">
@@ -45,7 +45,7 @@
                     #{comentario.texto}<br/>
                 </h:column> 
             </b:dataTable><br/>
-            <h:commandLink value="Añadir Comentario" action="#{comentarioBean.setProyectoBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
+            <b:commandButton icon-awesome="fa-pencil-square-o" value="Añadir Comentario" action="#{comentarioBean.setProyectoBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" style="margin-bottom: 10px" /><br/>
             </h:panelGroup>
             <h:panelGroup style="display:block; text-align: left; margin-right: 10px">
             <b:dataTable value="#{proyectoBean.proyectoSeleccionado.tareaCollection}" var="tarea" >
@@ -57,7 +57,7 @@
                     <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea, proyectoBean)}" value="#{tarea.nombre}"/><br/>
                 </h:column> 
             </b:dataTable><br/>
-            <h:commandLink value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
+            <b:commandButton icon-awesome="fa-pencil-square-o" value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" style="margin-bottom: 10px" /><br/>
             <b:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection1}" var="timeline" >
                 <h:column>
                     <f:facet name="header">
@@ -71,11 +71,11 @@
                 </b:panelGrid>
             
             <b:panelGrid columns="1">
-                <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
-            <h:link outcome="editarProyecto" value="editar proyecto" rendered="#{proyectoBean.doRenderizar()}"/><br/>
-            <b:commandButton value="Eliminar Proyecto" action="#{proyectoBean.doEliminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
-            <b:commandButton value="Terminar Proyecto" action="#{proyectoBean.doTerminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
-            <h:link outcome="principal" value="Volver" /><br/>
+                <h:panelGroup style="display:block; text-align: left; margin-left: 10px; margin-bottom: 10px">
+                    <b:button icon-awesome="fa-cog" value="Editar Proyecto" outcome="editarProyecto" rendered="#{proyectoBean.doRenderizar()}" style="margin-right: 10px"/>
+                    <b:commandButton icon-awesome="fa-trash" look="danger" value="Eliminar Proyecto" action="#{proyectoBean.doEliminar()}" rendered="#{proyectoBean.doRenderizar()}" style="margin-right:  10px"/>
+            <b:commandButton icon-awesome="fa-times" look="success" value="Terminar Proyecto" action="#{proyectoBean.doTerminar()}" rendered="#{proyectoBean.doRenderizar()}" style="margin-right:  10px"/>
+            <b:button icon-awesome="fa-sign-out" outcome="principal" value="Volver" /><br/>
                 </h:panelGroup>
             </b:panelGrid>
         </h:form>
