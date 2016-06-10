@@ -11,6 +11,12 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.BootsFaces-OSP-0.8.6-dist.jar}</file>
+<<<<<<< HEAD
+=======
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.BootsFaces-OSP-0.8.6-dist.jar-1}</file>
+>>>>>>> origin/master
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
