@@ -7,7 +7,7 @@
     <h:head>
         <title>Tarea</title>
     </h:head>
-    <h:body>
+    <h:body style="margin-top: 60px;">
         <b:navBar brand="Chart Project" fixed="top" inverse="true">
             <b:navbarLinks>
                 <b:navLink value="Inicio" href="principal.xhtml"/>
@@ -18,7 +18,7 @@
         <b:panelGrid columns="1">
             <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
                 <h:form>
-                    <b:commandButton value="Volver al proyecto #{proyectoBean.proyectoSeleccionado.nombre}" action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}" icon-awesome="fa-arrow-circle-left " look="success"/>
+                    <b:commandButton value="Volver al proyecto #{proyectoBean.proyectoSeleccionado.nombre}" action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}" icon-awesome="fa-arrow-circle-left "/>
                 </h:form>
                 <h1>Tarea #{tareaBean.tarea.nombre}</h1><br/>
                 <h:form>
@@ -29,7 +29,7 @@
                     <!-- <h4><b:label text="Change Log" ></b:label> </h4> #{tareaBean.tarea.changeLog}<br/> !-->
                     <h4><b:label text="Estado" ></b:label> </h4> #{tareaBean.tarea.estado}
                     <h4><b:label text="Prioridad" ></b:label> </h4> #{tareaBean.tarea.prioridad}<br/>
-                    <b:commandButton value="Editar" action="#{tareaBean.doEditar()}" look="success" icon-awesome="fa-pencil"/>
+                    <b:commandButton value="Editar" action="#{tareaBean.doEditar()}" look="success" icon-awesome="fa-pencil"/>&nbsp;
 
                     <b:commandButton value="Borrar" action="#{tareaBean.doBorrar()}" look="danger" icon-awesome="fa-trash"/>
                 </h:form>

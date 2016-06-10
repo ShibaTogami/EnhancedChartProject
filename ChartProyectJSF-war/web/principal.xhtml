@@ -9,10 +9,10 @@
     <h:head>
         <title>Proyectos</title>
     </h:head>
-    <h:body>
+    <h:body  style="margin-top: 60px;">
 
-        <h2><b:label text="Tus proyectos actuales"></b:label></h2>
-        <h:form style="margin-top: 60px;">
+        <h2><b:label text="Tus proyectos actuales"></b:label></h2><br/>
+        <h:form>
             <b:navBar brand="Chart Project" fixed="top" inverse="true">
                 <b:navbarLinks>
                     <b:navLink value="Inicio" href="principal.xhtml"/>
@@ -37,8 +37,8 @@
                 </b:panelGrid>
             </b:panel><br/>
             <b:button value="Crear un nuevo proyecto" iconAwesome="clone" outcome="nuevoProyecto"/><br/><br/>
-            <b:commandButton value="Logout" action="#{usuarioBean.doLogout()}" /> &nbsp;
-            <b:button value="Perfil" outcome="perfil"/><br/>
+            <b:commandButton value="Logout" action="#{usuarioBean.doLogout()}" icon-awesome="fa-sign-out"/> &nbsp;
+            <b:button value="Perfil" outcome="perfil" icon-awesome="fa-user"/><br/>
         </h:form>
     </h:body>
 </html>
