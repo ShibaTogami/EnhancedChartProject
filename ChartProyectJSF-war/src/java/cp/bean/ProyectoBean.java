@@ -118,10 +118,19 @@ public class ProyectoBean implements Serializable {
      
     public String buscarUsuarios(){
         setUsuariosEncontrados(usuarioFacade.getUsuarioPorNicknameParecido(usuarioBuscar));
+        
         if(usuariosEncontrados == null){
             return "error";
         }
         else{
+            for(Usuario us : usuariosEncontrados){
+            for(Usuario u : proyectoSeleccionado.getUsuarioCollection()){
+                if(us.getNickname().equals(u.getNickname())){
+                    usuariosEncontrados.remove(u);
+                    break;
+                }
+            }
+        }
         return "busqueda";
         }
     }
@@ -222,6 +231,7 @@ public class ProyectoBean implements Serializable {
     
     public String añadirSeleccion(Usuario usuario){
         seleccion.add(usuario);
+        usuariosEncontrados.remove(usuario);
         return "busqueda";
     }
     

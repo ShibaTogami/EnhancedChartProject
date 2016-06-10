@@ -2,29 +2,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
     <h:head>
         <title>Proyecto</title>
     </h:head>
     <h:body>
+        <b:panelGrid columns="1">
+            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
         <h3>Proyecto: #{proyectoBean.proyectoSeleccionado.nombre}</h3><br/>
         Fecha de creación: #{proyectoBean.proyectoSeleccionado.fechaInicio}<br/>
         Estado: #{proyectoBean.proyectoSeleccionado.estado}<br/>
-
+        Descripción:<br/>
+        #{proyectoBean.proyectoSeleccionado.descripcion}<br/>
+            </h:panelGroup>
+        </b:panelGrid>
         <h:form >
-       
+            <b:panelGrid columns="1">
+            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
             Añadir Participante: <br/>
-            <h:inputText value="#{proyectoBean.usuarioBuscar}" rendered="#{proyectoBean.doRenderizar()}" /><br/>
-            <h:commandButton action="#{proyectoBean.buscarUsuarios()}" value="Buscar" rendered="#{proyectoBean.doRenderizar()}" ></h:commandButton><br/>
-            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.usuarioCollection}" var="usuario" >
+            <b:inputText value="#{proyectoBean.usuarioBuscar}" rendered="#{proyectoBean.doRenderizar()}" inline="true" /><br/>
+            <b:commandButton action="#{proyectoBean.buscarUsuarios()}" value="Buscar" rendered="#{proyectoBean.doRenderizar()}" ></b:commandButton><br/>
+            </h:panelGroup>
+            </b:panelGrid>
+            <b:panelGrid columns="2">
+            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
+            <b:dataTable value="#{proyectoBean.proyectoSeleccionado.usuarioCollection}" var="usuario"  >
                 <h:column>
                     <f:facet name="header">
                         Participantes
                     </f:facet>
                     #{usuario.nickname}
                 </h:column>      
-            </h:dataTable><br/>
-            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection}" var="comentario" >
+            </b:dataTable><br/>
+            <b:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection}" var="comentario" >
                 <h:column>
                     <f:facet name="header">
                         Comentarios:
@@ -32,29 +44,42 @@
                     #{comentario.nickname.nickname}<br/>
                     #{comentario.texto}<br/>
                 </h:column> 
-            </h:dataTable><br/>
+            </b:dataTable><br/>
             <h:commandLink value="Añadir Comentario" action="#{comentarioBean.setProyectoBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
-            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.tareaCollection}" var="tarea" >
+            </h:panelGroup>
+            <h:panelGroup style="display:block; text-align: left; margin-right: 10px">
+            <b:dataTable value="#{proyectoBean.proyectoSeleccionado.tareaCollection}" var="tarea" >
                 <h:column>
                     <f:facet name="header">
                         Tareas:
                     </f:facet>
-                    <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea)}" value="=#{tarea.nombre}"/><br/>
+                    <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea)}" value="#{tarea.nombre}"/><br/>
 
                 </h:column> 
-            </h:dataTable><br/>
+            </b:dataTable><br/>
             <h:commandLink value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
-            <h:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection1}" var="timeline" >
+            <b:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection1}" var="timeline" >
                 <h:column>
                     <f:facet name="header">
                         Timeline:
                     </f:facet>
                     #{timeline.texto}<br/>
                 </h:column> 
-            </h:dataTable><br/>
+            </b:dataTable><br/>
+            
+            </h:panelGroup>
+                </b:panelGrid>
+            
+            <b:panelGrid columns="1">
+                <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
             <h:link outcome="editarProyecto" value="editar proyecto" rendered="#{proyectoBean.doRenderizar()}"/><br/>
-            <h:commandButton value="Eliminar Proyecto" action="#{proyectoBean.doEliminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
-            <h:commandButton value="Terminar Proyecto" action="#{proyectoBean.doTerminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
+            <b:commandButton value="Eliminar Proyecto" action="#{proyectoBean.doEliminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
+            <b:commandButton value="Terminar Proyecto" action="#{proyectoBean.doTerminar()}" rendered="#{proyectoBean.doRenderizar()}"/><br/>
+            <h:link outcome="principal" value="Volver" /><br/>
+                </h:panelGroup>
+            </b:panelGrid>
         </h:form>
+            
+        
     </h:body>
 </html>
