@@ -9,6 +9,7 @@
         <title>Crear proyecto</title>
     </h:head>
     <h:body>
+        
         <b:navBar brand="Chart Project" fixed="top" inverse="true">
             <b:navbarLinks>
                 <b:navLink value="Inicio" href="principal.xhtml"/>
@@ -16,6 +17,8 @@
                 <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
+         <b:panelGrid columns="1">
+            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
         <h2><b:label text="Crear proyecto"/></h2>
         <h3><h:outputText value="#{proyectoCrearBean.error}" id="ajax1"/></h3>
         <h:form>
@@ -31,17 +34,19 @@
 
             <h4><b:label text="Añadir participante"/></h4>
             <b:inputText value="#{proyectoCrearBean.participanteNuevo}" inline="true" field-size="md" size="24"/> <br/>
-            <h:commandButton value="Añadir" action="#{proyectoCrearBean.doAñadirParticipante(usuarioBean.usuario)}">
-            </h:commandButton>
+            <b:commandButton value="Añadir" action="#{proyectoCrearBean.doAñadirParticipante(usuarioBean.usuario)}">
+            </b:commandButton>
 
 
             <br/>
             <h4><b:label text="Descripción"/></h4>
             <b:inputTextarea value="#{proyectoCrearBean.proyecto.descripcion}" inline="true" field-size="md" size="24"/> <br/>
 
-            <h:commandButton value="Enviar" action="#{proyectoCrearBean.doCrear(usuarioBean.usuario)}" />
-            <h:commandButton value="Cancelar" action="#{proyectoCrearBean.doCancelar()}" />
+            <b:commandButton value="Enviar" action="#{proyectoCrearBean.doCrear(usuarioBean.usuario)}" />
+            <b:commandButton value="Cancelar" action="#{proyectoCrearBean.doCancelar()}" />
         </h:form>
+            </h:panelGroup>
+         </b:panelGrid>
     </h:body>
 </html>
 
