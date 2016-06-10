@@ -172,25 +172,10 @@ public class ProyectoBean implements Serializable {
         }
         List<Usuario> usuarios = (List<Usuario>) proyectoSeleccionado.getUsuarioCollection();
         for(Usuario u : usuarios){
-            List<Proyecto> proyectos = (List<Proyecto>) u.getProyectoCollection();
-            for(int i = 0; i < proyectos.size(); i++){
-                if(proyectos.get(i).getIdProyecto().equals(proyectoSeleccionado.getIdProyecto())){
-                    proyectos.remove(i);
-                    u.setProyectoCollection(proyectos);
-                    break;
-                }
-            }
+            u.getProyectoCollection().remove(proyectoSeleccionado);
         }
-        List<Proyecto> proyectos = (List<Proyecto>) usuarioBean.usuario.getProyectoCollection1();
         this.usuarioBean.usuario.getProyectoCollection().remove(proyectoSeleccionado);
-        proyectos.remove(proyectoSeleccionado);
-        for(int j = 0; j < proyectos.size();j++){
-            if(proyectos.get(j).getIdProyecto().equals(proyectoSeleccionado.getIdProyecto())){
-                    proyectos.remove(j);
-                    usuarioBean.usuario.setProyectoCollection1(proyectos);
-                    break;
-            }
-        }
+        this.usuarioBean.usuario.getProyectoCollection1().remove(proyectoSeleccionado);
         proyectoFacade.remove(proyectoSeleccionado);
         return "principal";
     }
