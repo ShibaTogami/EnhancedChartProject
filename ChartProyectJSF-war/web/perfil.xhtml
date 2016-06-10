@@ -7,16 +7,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Perfil de usuario</title>
-        <style type="text/css">
-            .form-table {
-                
-                padding: 15px;
-            }
-        </style>
     </h:head>
     #{usuarioBean.control()}
     <h:body>
-        <h:form styleClass="form-table">
+        <h:form>
             <h1>Perfil de #{usuarioBean.usuario.nickname}</h1>
             <b:iconAwesome name="envelope"/>
             Email: #{usuarioBean.usuario.email}<br/>
