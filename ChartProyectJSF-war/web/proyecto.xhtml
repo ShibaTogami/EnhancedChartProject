@@ -55,10 +55,6 @@
                     </f:facet>
 
                     <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea, proyectoBean)}" value="#{tarea.nombre}"/><br/>
-
-                    <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea, proyectoBean)}" value="=#{tarea.nombre}"/><br/>
-
-
                 </h:column> 
             </b:dataTable><br/>
             <h:commandLink value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" /><br/>
