@@ -1,13 +1,22 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Chart Project (Versión JSF)</title>
+        <style type="text/css">
+            .form-signin-index {
+                margin: 0 auto;
+                max-width: 330px;
+                padding: 15px;
+            }
+        </style>
     </h:head>
     <h:body>
-        <h1>Pagina principal</h1>
-        <pre>
+        <pre><center>
   ,----..    ,---,                            ___      
  /   /   \ ,--.' |                          ,--.'|_    
 |   :     :|  |  :                 __  ,-.  |  | :,'   
@@ -21,15 +30,31 @@
 |   :    / |  | ,'   ;  :   .'   \---'      |  ,   /  
  \   \ .'  `--''     |  ,     .-./           ---`-'   
   `---`               `--`---'                       
-        </pre>
-        #{usuarioBean.errorLogin}
-        <h:form>
-            Usuario: <h:inputText size="20" value="#{usuarioBean.usuarioIntroducido}"/><br/> 
-            Contrase&ntilde;a: <h:inputSecret size="20" value="#{usuarioBean.passwordIntroducido}"/><br/>
-            <h:commandButton  action="#{usuarioBean.doLoguear()}" value="Log in"/> 
+        </center></pre>
+        
+        <h:form styleClass="form-signin-index">
+            <b:inputText placeholder="Usuario" size="20" value="#{usuarioBean.usuarioIntroducido}">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="user"/>
+                </f:facet>
+            </b:inputText><br/> 
+            <b:inputSecret placeholder="Contraseña" size="20" value="#{usuarioBean.passwordIntroducido}">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="key" />
+                </f:facet>
+            </b:inputSecret><br/>
+            <b:commandButton look="info btn-block" icon-awesome="fa-sign-in" size="lg" action="#{usuarioBean.doLoguear()}" value="Log in"/><br/>
+            
+            <center>
+            <b:buttonGroup orientation="vertical">
+                <b:button value="Registro"  outcome="registro.xhtml" look="info btn-block"/>
+                <b:button value="Recuperar contraseña" outcome="recuperarPassword.xhtml" look="info btn-block"/>
+            </b:buttonGroup> 
+            </center><br/>
+            <b:alert severity="danger" rendered="#{!usuarioBean.errorLogin.equals('')}" closable="true"><strong>¡Error!</strong> #{usuarioBean.errorLogin}</b:alert>
         </h:form>
-        <h6><a href="registro.xhtml">Registro</a>  <a href="recuperarPassword.xhtml">Olvid&eacute; mi contrase&ntilde;a</a></h6>
-        #{usuarioBean.setErrorLogin("")}    
+
+        #{usuarioBean.setErrorLogin("")}  
     </h:body>
 </html>
 

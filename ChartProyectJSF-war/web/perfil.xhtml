@@ -1,51 +1,67 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>Perfil de usuario</title>
+        <style type="text/css">
+            .form-table {
+                
+                padding: 15px;
+            }
+        </style>
     </h:head>
     #{usuarioBean.control()}
     <h:body>
-        <h:form>
+        <h:form styleClass="form-table">
             <h1>Perfil de #{usuarioBean.usuario.nickname}</h1>
-            Usuario: #{usuarioBean.usuario.nickname}<br/>
+            <b:iconAwesome name="envelope"/>
             Email: #{usuarioBean.usuario.email}<br/>
-            Web: #{usuarioBean.usuario.webPersonal}<br/>
-            Miembro desde: #{usuarioBean.usuario.fechaRegistro}<br/>
-            Ultima conexión: #{usuarioBean.usuario.ultimaConexion}<br/>
-            Karma: #{usuarioBean.usuario.karma}<br/>
-            <h:commandButton value="Logout" action="#{usuarioBean.doLogout()}"/><br/><br/>
+            <b:iconAwesome name="paper-plane"/>
+            Web: <a href="#{usuarioBean.usuario.webPersonal}">#{usuarioBean.usuario.webPersonal}</a><br/>
+            <b:iconAwesome name="calendar"/>
+            Miembro desde: #{usuarioBean.usuario.fechaRegistro.day}/#{usuarioBean.usuario.fechaRegistro.month}/#{usuarioBean.usuario.fechaRegistro.year}<br/>
+            <b:iconAwesome name="clock-o"/>
+            Ultima conexión: #{usuarioBean.usuario.ultimaConexion.toGMTString()}<br/>
+            <b:iconAwesome name="bar-chart-o"/>
+            Karma: #{usuarioBean.usuario.karma}<br/><br/>
+            <b:commandButton value="Logout" icon-awesome="fa-sign-out" action="#{usuarioBean.doLogout()}"/><br/><br/>
             
-            <h:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos" border="1">
+            <b:panelGrid columns="2">
+            <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos">
                 <h:column>
                     <f:facet name="header">
                         Proyectos
                     </f:facet>
-                    <h:commandLink value="#{proyectos.nombre}" action="#{proyectoBean.doMostrar(proyectos.idProyecto)}"/>
+                    <h:commandLink action="#{proyectoBean.doMostrar(proyectos.idProyecto, usuarioBean)}" value="#{proyectos.nombre}" />
                 </h:column>
-            </h:dataTable>
-            <br/>
-            <h:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera" border="1">
+            </b:dataTable>
+            
+            <b:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera">
                 <h:column>
                     <f:facet name="header">
                         Lidera
                     </f:facet>
-                    <h:commandLink value="#{lidera.nombre}" action="#{proyectoBean.doMostrar(lidera.idProyecto)}"/>
+                    <h:commandLink action="#{proyectoBean.doMostrar(lidera.idProyecto, usuarioBean)}" value="#{lidera.nombre}"/>
                 </h:column>
-            </h:dataTable>
+            </b:dataTable>
+            </b:panelGrid>
             <br/>
-            <h:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios">
+            
+            <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" paginated="false" page-length="25">
                 <h:column>
                     <f:facet name="header">
-                        Comentarios y actividad del usuario
+                        <b:iconAwesome name="comments-o"> Comentarios y actividad reciente del usuario</b:iconAwesome>
                     </f:facet>
                     #{comentarios.texto}
                 </h:column>
-            </h:dataTable>
+            </b:dataTable><br/>
+            <b:button value="Volver a principal" outcome="principal"/>
         </h:form>
-        <h:link value="Volver a principal" outcome="principal"/>
+        
     </h:body>
 </html>
 
