@@ -20,11 +20,12 @@
                             #{usuario.nickname}
                         </h:column> 
                         <h:column>
-                            <b:commandButton action="#{proyectoBean.añadirSeleccion(usuario)}" value="Añadir"></b:commandButton>
+                            <b:commandButton icon-awesome ="fa-user-plus" action="#{proyectoBean.añadirSeleccion(usuario)}" value="Añadir"></b:commandButton>
                         </h:column>   
                     </h:dataTable>
-                    <b:commandButton action="#{proyectoBean.actualizar()}" value ="Finalizar"></b:commandButton>    
-                    <b:commandButton action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}" value="Cancelar"></b:commandButton>  
+                    <br/>
+                    <b:commandButton icon-awesome="fa-check " action="#{proyectoBean.actualizar()}" value ="Finalizar" look="success"></b:commandButton>    
+                    <b:commandButton icon-awesome="fa-times" action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}" value="Cancelar" look="danger"></b:commandButton>
                 </h:form>
             </h:panelGroup>
         </b:panelGrid>
