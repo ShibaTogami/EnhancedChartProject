@@ -7,7 +7,7 @@
     <h:head>
         <title>Crear/Editar Tarea</title>
     </h:head>
-    <h:body>
+    <h:body style="margin-top: 60px; background-color:  #b7e8f1">
         <b:navBar brand="Chart Project" fixed="top" inverse="true">
             <b:navbarLinks>
                 <b:navLink value="Inicio" href="principal.xhtml"/>
@@ -15,41 +15,43 @@
                 <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
-        <b:panelGrid columns="1">
-            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
-                <h1>Edición de tarea</h1>
-                <h4><b:label text="ID de Tarea" ></b:label> </h4>
-                        #{tareaBean.tarea.tareaPK.idTarea}
-                <h4><b:label text="ID de Proyecto" ></b:label> </h4>
-                        #{tareaBean.tarea.tareaPK.idProyecto}
-                <h:form>
-                    <h4><b:label text="Nombre" ></b:label> </h4>
-                    <b:inputText value="#{tareaBean.tarea.nombre}" inline="true" field-size="md" size="24"/>
-                    <h4><b:label text="Descripción" ></b:label> </h4>
-                    <b:inputTextarea value="#{tareaBean.tarea.descripcion}" inline="true" field-size="lg" />
-                    <div >
-                        <h4><b:label text="Estado" ></b:label> </h4>
-                        <b:selectOneMenu value="#{tareaBean.tarea.estado}" inline="true" >
-                            <f:selectItem itemValue ="Por hacer" itemLabel="Por hacer"/>
-                            <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
-                            <f:selectItem itemValue="Hecho" itemLabel="Hecho"/>
-                            <f:selectItem itemValue="Testeando" itemLabel="Testeando"/>
+        <b:container>
+            <b:panelGrid columns="1">
+                <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
+                    <h1>Edición de tarea</h1>
+                    <h4><b:label text="ID de Tarea" ></b:label> </h4>
+                            #{tareaBean.tarea.tareaPK.idTarea}
+                    <h4><b:label text="ID de Proyecto" ></b:label> </h4>
+                            #{tareaBean.tarea.tareaPK.idProyecto}
+                    <h:form>
+                        <h4><b:label text="Nombre" ></b:label> </h4>
+                        <b:inputText value="#{tareaBean.tarea.nombre}" inline="true" field-size="md" size="24"/>
+                        <h4><b:label text="Descripción" ></b:label> </h4>
+                        <b:inputTextarea value="#{tareaBean.tarea.descripcion}" inline="true" field-size="lg" />
+                        <div >
+                            <h4><b:label text="Estado" ></b:label> </h4>
+                            <b:selectOneMenu value="#{tareaBean.tarea.estado}" inline="true" >
+                                <f:selectItem itemValue ="Por hacer" itemLabel="Por hacer"/>
+                                <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
+                                <f:selectItem itemValue="Hecho" itemLabel="Hecho"/>
+                                <f:selectItem itemValue="Testeando" itemLabel="Testeando"/>
+                            </b:selectOneMenu>
+                        </div>
+                        <h4><b:label text="Prioridad" ></b:label> </h4>
+                        <b:selectOneMenu value="#{tareaBean.tarea.prioridad}" inline="true">
+                            <f:selectItem itemValue="1" itemLabel="Baja"/>
+                            <f:selectItem itemValue="2" itemLabel="Media"/>
+                            <f:selectItem itemValue="3" itemLabel="Alta"/>
                         </b:selectOneMenu>
-                    </div>
-                    <h4><b:label text="Prioridad" ></b:label> </h4>
-                    <b:selectOneMenu value="#{tareaBean.tarea.prioridad}" inline="true">
-                        <f:selectItem itemValue="1" itemLabel="Baja"/>
-                        <f:selectItem itemValue="2" itemLabel="Media"/>
-                        <f:selectItem itemValue="3" itemLabel="Alta"/>
-                    </b:selectOneMenu>
-                    <br/>
+                        <br/>
 
-                    <b:commandButton value="Guardar" action="#{tareaBean.doGuardar()}"/>
+                        <b:commandButton value="Guardar" action="#{tareaBean.doGuardar()}"/>&nbsp;
 
-                    <b:commandButton value="Cancelar" action="#{tareaBean.proyectoBean.doMostrar(tareaBean.proyecto.idProyecto, usuarioBean)}"/>
-                </h:form>
-            </h:panelGroup>
-        </b:panelGrid>
+                        <b:commandButton value="Cancelar" action="#{tareaBean.proyectoBean.doMostrar(tareaBean.proyecto.idProyecto, usuarioBean)}"/>
+                    </h:form>
+                </h:panelGroup>
+            </b:panelGrid>
+        </b:container>
     </h:body>
 </html>
 

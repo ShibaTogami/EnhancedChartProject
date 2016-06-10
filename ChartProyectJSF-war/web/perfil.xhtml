@@ -9,7 +9,7 @@
         <title>Perfil de usuario</title>
     </h:head>
     #{usuarioBean.control()}
-    <h:body style="margin-top: 60px;">
+    <h:body style="margin-top: 60px; background-color:  #b7e8f1">
         <b:navBar brand="Chart Project" fixed="top" inverse="true">
             <b:navbarLinks>
                 <b:navLink value="Inicio" href="principal.xhtml"/>
@@ -33,7 +33,7 @@
                 <b:commandButton value="Logout" icon-awesome="fa-sign-out" action="#{usuarioBean.doLogout()}"/><br/><br/>
 
                 <b:panelGrid columns="2">
-                    <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos">
+                    <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos" style="background-color: white">
                         <h:column>
                             <f:facet name="header">
                                 Proyectos
@@ -42,7 +42,7 @@
                         </h:column>
                     </b:dataTable>
 
-                    <b:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera">
+                    <b:dataTable value="#{usuarioBean.usuario.proyectoCollection1}" var="lidera" style="background-color: white">
                         <h:column>
                             <f:facet name="header">
                                 Lidera
@@ -53,7 +53,7 @@
                 </b:panelGrid>
                 <br/>
 
-                <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" paginated="false" page-length="25">
+                <b:dataTable value="#{usuarioBean.usuario.comentarioCollection}" var="comentarios" paginated="false" page-length="25" style="background-color: white">
                     <h:column>
                         <f:facet name="header">
                             <b:iconAwesome name="comments-o"> Comentarios y actividad reciente del usuario</b:iconAwesome>

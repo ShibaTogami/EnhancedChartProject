@@ -9,8 +9,9 @@
     <h:head>
         <title>Proyectos</title>
     </h:head>
-    <h:body  style="margin-top: 60px;">
+    <h:body style="margin-top: 60px; background-color:  #b7e8f1 ">
 
+        <b:container>
         <h2><b:label text="Tus proyectos actuales"></b:label></h2><br/>
         <h:form>
             <b:navBar brand="Chart Project" fixed="top" inverse="true">
@@ -20,7 +21,7 @@
                     <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
                 </b:navbarLinks>
             </b:navBar>
-            <b:panel title="Proyectos" style="width: 100%;">
+            <b:panel title="Proyectos" style="width: 100%; background-color:   #f6f8fa  ">
                 <b:panelGrid columns="4">
                     <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
                         <h:column> 
@@ -40,5 +41,6 @@
             <b:commandButton value="Logout" action="#{usuarioBean.doLogout()}" icon-awesome="fa-sign-out"/> &nbsp;
             <b:button value="Perfil" outcome="perfil" icon-awesome="fa-user"/><br/>
         </h:form>
+        </b:container>
     </h:body>
 </html>
