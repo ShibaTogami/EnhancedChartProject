@@ -10,11 +10,12 @@
     </h:head>
     #{usuarioBean.control()}
     <h:body>
+        <b:container>
         <h:form>
             <h1>Perfil de #{usuarioBean.usuario.nickname}</h1>
             <b:iconAwesome name="envelope"/>
             Email: #{usuarioBean.usuario.email}<br/>
-            <b:iconAwesome name="paper-plane"/>
+            <b:iconAwesome name="globe"/>
             Web: <a href="#{usuarioBean.usuario.webPersonal}">#{usuarioBean.usuario.webPersonal}</a><br/>
             <b:iconAwesome name="calendar"/>
             Miembro desde: #{usuarioBean.usuario.fechaRegistro.day}/#{usuarioBean.usuario.fechaRegistro.month}/#{usuarioBean.usuario.fechaRegistro.year}<br/>
@@ -53,9 +54,9 @@
                     #{comentarios.texto}
                 </h:column>
             </b:dataTable><br/>
-            <b:button value="Volver a principal" outcome="principal"/>
+            <b:button value="Volver a principal" iconAwesome="arrow-circle-left" outcome="principal"/>
         </h:form>
-        
+        </b:container>
     </h:body>
 </html>
 
