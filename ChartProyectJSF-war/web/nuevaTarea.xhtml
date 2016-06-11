@@ -45,9 +45,9 @@
                         </b:selectOneMenu>
                         <br/>
 
-                        <b:commandButton value="Guardar" action="#{tareaBean.doGuardar()}"/>&nbsp;
+                        <b:commandButton value="Guardar" action="#{tareaBean.doGuardar()}" icon-awesome="fa-check" look="success"/>&nbsp;
 
-                        <b:commandButton value="Cancelar" action="#{tareaBean.proyectoBean.doMostrar(tareaBean.proyecto.idProyecto, usuarioBean)}"/>
+                        <b:button icon-awesome="fa-times" look="danger" value="Cancelar" outcome="proyecto"/>
                     </h:form>
                 </h:panelGroup>
             </b:panelGrid>
