@@ -21,7 +21,7 @@
             <b:panelGrid columns="1">
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
                     <h2><b:label text="Crear proyecto"/></h2>
-                    <h3><h:outputText value="#{proyectoCrearBean.error}" id="ajax1"/></h3>
+                    <b:alert severity="danger" rendered="#{proyectoCrearBean.errorActivo}" title="¡Error!" style="width: 30%">#{proyectoCrearBean.error}</b:alert>
                     <h:form>
                         <h4><b:label text="Nombre" /></h4> <b:inputText value="#{proyectoCrearBean.proyecto.nombre}" inline="true" field-size="md" size="24"/> <br/>
                         <h4><b:label text="Participantes"/></h4> 
@@ -43,7 +43,7 @@
                         <h4><b:label text="Descripción"/></h4>
                         <b:inputTextarea value="#{proyectoCrearBean.proyecto.descripcion}" inline="true" field-size="md" size="24"/> <br/>
 
-                        <b:commandButton value="Enviar" action="#{proyectoCrearBean.doCrear(usuarioBean.usuario)}" />
+                        <b:commandButton value="Enviar" action="#{proyectoCrearBean.doCrear(usuarioBean.usuario)}" />&nbsp;
                         <b:commandButton value="Cancelar" action="#{proyectoCrearBean.doCancelar()}" />
                     </h:form>
                 </h:panelGroup>

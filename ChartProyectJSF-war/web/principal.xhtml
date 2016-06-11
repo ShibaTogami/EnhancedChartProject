@@ -21,7 +21,7 @@
                     <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
                 </b:navbarLinks>
             </b:navBar>
-            <b:panel title="Proyectos" style="width: 100%; background-color:   #f6f8fa  ">
+            <b:panel title="Proyectos" style="width: 100%; background-color: #f6f8fa;  ">
                 <b:panelGrid columns="4">
                     <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
                         <h:column> 

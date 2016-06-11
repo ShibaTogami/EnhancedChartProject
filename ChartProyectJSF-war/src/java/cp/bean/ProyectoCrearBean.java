@@ -39,6 +39,7 @@ public class ProyectoCrearBean {
     protected List<Usuario> participantes;
     protected String participanteNuevo;
     protected String error;
+    protected boolean errorActivo;
     protected Proyecto proyecto;
 
     
@@ -55,6 +56,15 @@ public class ProyectoCrearBean {
         proyecto.setDescripcion("Introduzca una descripcion para los nuevos participantes.");
         this.participantes = new ArrayList();
         error="";
+        errorActivo = false;
+    }
+
+    public boolean isErrorActivo() {
+        return errorActivo;
+    }
+
+    public void setErrorActivo(boolean errorActivo) {
+        this.errorActivo = errorActivo;
     }
 
     public String getError() {
@@ -93,16 +103,21 @@ public class ProyectoCrearBean {
         Usuario usuario = usuarioFacade.getUsuarioPorNickname(participanteNuevo);
         //PREGUNTAR EDU CÓMO HACER LO DE AJAX Y EL ERROR
         if(participanteNuevo.equals("")) {
-            error = "Error: campo vacío.";
+            error = "Campo vacío.";
+            errorActivo = true;
         } else if(usuario == null) {
-            error = "ERROR: el usuario introducido no existe.";
+            error = "El usuario introducido no existe.";
+            errorActivo = true;
         } else if(usuario.equals(lider)) {
-            error = "ERROR: el líder ya formar parte de los participantes.";
+            error = "El líder ya formar parte de los participantes.";
+            errorActivo = true;
         } else if(participantes.contains(usuario)) {
-            error = "Error: el usuario introducido ya forma parte de los participantes.";
+            error = "El usuario introducido ya forma parte de los participantes.";
+            errorActivo = true;
         } else {
             this.participantes.add(usuario);
             error = "";
+            errorActivo = false;
         }
         this.participanteNuevo = "";
         return "nuevoProyecto"; 
