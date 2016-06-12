@@ -153,6 +153,9 @@ public class ProyectoCrearBean {
         }  
         
         List<Proyecto> proyectosUsuarioLidera = (List<Proyecto>) lider.getProyectoCollection1();
+        if(proyectosUsuarioLidera == null) {
+            proyectosUsuarioLidera = new ArrayList();
+        }
         proyectosUsuarioLidera.add(proyecto);
         usuarioFacade.edit(lider);
         

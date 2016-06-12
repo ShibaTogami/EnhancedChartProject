@@ -156,7 +156,7 @@ public class UsuarioBean implements Serializable {
         return redireccion;
     }
     
-    public String doRegistrar()
+    public String doRegistrar() throws InterruptedException
     {
         String salida="";
         if (usuarioIntroducido.equals("") || emailIntroducido.equals("") || emailIntroducido2.equals("") 
@@ -181,15 +181,14 @@ public class UsuarioBean implements Serializable {
                         usuario.setUltimaConexion(new Date());
                         usuarioFacade.create(usuario);
                         //vaciar propiedades no necesarias con valores residuales
-                        usuarioIntroducido=null;
-                        passwordIntroducido=null;
+               
                         emailIntroducido=null;
                         preguntaSecretaIntroducida=null;
                         respuestaSecretaIntroducida=null;
                         passwordIntroducido2=null;
                         emailIntroducido2=null;
-                        
-                        salida = "principal.xhtml";
+
+                        this.doLoguear();
                     }
                     else
                     {
