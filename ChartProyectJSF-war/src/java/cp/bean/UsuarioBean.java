@@ -309,6 +309,7 @@ public class UsuarioBean implements Serializable {
             if (passwordIntroducido.equals(passwordIntroducido2)) //y las contraseñas coinciden
             {
                 usuario.setPassword(passwordIntroducido);
+                usuarioFacade.edit(usuario);
             }
             else
             {
