@@ -105,18 +105,21 @@ public class TareaBean {
         this.tareaFacade.remove(tarea);
         this.proyectoBean.proyectoSeleccionado.getTareaCollection().remove(tarea);
         this.proyectoFacade.edit(this.proyectoBean.proyectoSeleccionado);
+        this.proyectoBean.comentarioTareaEliminada();
         return "proyecto";
     }
 
     public String doGuardar() {
         if (tarea.getTareaPK().getIdTarea() != null) {
             this.tareaFacade.edit(tarea);
+            this.proyectoBean.comentarioTareaEditada();
         } else {
             Date d = new Date();
             tarea.setFechaInicio(d);
             this.tareaFacade.create(tarea);
             this.proyecto.getTareaCollection().add(tarea);
             this.proyectoFacade.edit(proyecto);
+            this.proyectoBean.comentarioTareaCreada();
         }
         return "tarea";
     }
