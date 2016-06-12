@@ -101,6 +101,7 @@ public class ComentarioBean {
         comentario.setNickname(usuarioBean.getUsuario());
         comentarioFacade.create(comentario);
         proyectoBean.proyectoSeleccionado.getComentarioCollection().add(comentario);
+        comentario = new Comentario();
         return "proyecto";
     }
     
