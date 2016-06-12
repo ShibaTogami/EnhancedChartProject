@@ -20,11 +20,11 @@
         <b:container>
             <b:panelGrid columns="1">
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
-                    <h2><b:label text="Crear proyecto"/></h2>
+                    <h2><b:label severity="info" text="Crear proyecto"/></h2>
                     <b:alert severity="danger" rendered="#{proyectoCrearBean.errorActivo}" title="¡Error!" style="width: 30%">#{proyectoCrearBean.error}</b:alert>
                     <h:form>
-                        <h4><b:label text="Nombre" /></h4> <b:inputText value="#{proyectoCrearBean.proyecto.nombre}" inline="true" field-size="md" size="24"/> <br/>
-                        <h4><b:label text="Participantes"/></h4> 
+                        <h4><b:label severity="info" text="Nombre" /></h4> <b:inputText value="#{proyectoCrearBean.proyecto.nombre}" inline="true" field-size="md" size="24"/> <br/>
+                        <h4><b:label severity="info" text="Participantes"/></h4> 
                         <table name="ajax2">
                             <ui:repeat var="participante" value="#{proyectoCrearBean.participantes}" varStatus="status">
                                 <tr>
@@ -33,14 +33,14 @@
                             </ui:repeat>
                         </table>
 
-                        <h4><b:label text="Añadir participante"/></h4>
+                        <h4><b:label severity="info" text="Añadir participante"/></h4>
                         <b:inputText value="#{proyectoCrearBean.participanteNuevo}" inline="true" field-size="md" size="24"/> <br/>
                         <b:commandButton value="Añadir" action="#{proyectoCrearBean.doAñadirParticipante(usuarioBean.usuario)}">
                         </b:commandButton>
 
 
                         <br/>
-                        <h4><b:label text="Descripción"/></h4>
+                        <h4><b:label severity="info" text="Descripción"/></h4>
                         <b:inputTextarea value="#{proyectoCrearBean.proyecto.descripcion}" inline="true" field-size="md" size="24"/> <br/>
 
                         <b:commandButton value="Enviar" action="#{proyectoCrearBean.doCrear(usuarioBean.usuario)}" />&nbsp;

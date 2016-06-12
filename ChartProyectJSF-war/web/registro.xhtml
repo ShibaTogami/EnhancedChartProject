@@ -9,13 +9,14 @@
     </h:head>
    
         
-     <h:body style="padding: 60px;">
+     <h:body style="padding: 60px; background-color: #4ab8e8">
         <b:container>
-            <b:jumbotron>
+            <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorRegistro.equals(usuarioBean.cadenaVacia)}"> #{usuarioBean.errorRegistro}</b:alert>
+            <b:jumbotron style="background-color: #b7e8f1">
                     <b:container>
 
                         <h:form styleClass="form-signin" prependId="false">
-                            <h2 class="form-signin-heading">Registrate, por favor</h2>
+                            <h2 class="form-signin-heading"><b:label text="Registra tus datos" severity="info"/></h2>
 
                             <b:inputText id="nickname" placeholder="Nickname" size="20" value="#{usuarioBean.usuarioIntroducido}" >
                                 <f:facet name="prepend">
@@ -65,5 +66,6 @@
                     </b:container>
             </b:jumbotron>
         </b:container>
+         #{usuarioBean.setErrorRegistro(usuarioBean.cadenaVacia)}
     </h:body>
 </html>

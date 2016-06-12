@@ -159,7 +159,14 @@ public class UsuarioBean implements Serializable {
     public String doRegistrar()
     {
         String salida="";
-        if (usuarioFacade.getUsuarioPorNickname(usuarioIntroducido)==null) //si el usuario es nuevo
+        if (usuarioIntroducido.equals("") || emailIntroducido.equals("") || emailIntroducido2.equals("") 
+           || passwordIntroducido.equals("") || passwordIntroducido2.equals("") || preguntaSecretaIntroducida.equals("") 
+           || respuestaSecretaIntroducida.equals(""))
+        {//comprobando campos null
+            errorRegistro="Error: Todos los campos son obligatorios.";
+            salida = "registro.xhtml";
+        }
+        else if (usuarioFacade.getUsuarioPorNickname(usuarioIntroducido)==null) //si el usuario es nuevo
         {    
             if (!passwordMalicioso()) //si el password no es malicioso
             {

@@ -16,7 +16,7 @@
         </b:navBar>
         <b:container>
             <h:form>
-                <h1><b:label text="Añada su comentario"/></h1><br/>
+                <h1><b:label severity="info" text="Añada su comentario"/></h1><br/>
                 <b:inputTextarea value="#{comentarioBean.comentario.texto}"/><br/>
                 <b:commandButton value="Enviar" look="success" icon-awesome="check"  action="#{comentarioBean.doComentar()}"/> &nbsp;
                 <b:commandButton value="Cancelar" look="danger" icon-awesome="remove" action="proyecto" /><br/>
