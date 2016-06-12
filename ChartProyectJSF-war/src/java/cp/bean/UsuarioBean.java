@@ -189,6 +189,7 @@ public class UsuarioBean implements Serializable {
                         emailIntroducido2=null;
 
                         this.doLoguear();
+                        salida = "principal.xhtml";
                     }
                     else
                     {
