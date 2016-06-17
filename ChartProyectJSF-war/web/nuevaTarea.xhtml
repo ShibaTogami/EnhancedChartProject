@@ -18,18 +18,18 @@
         <b:container>
             <b:panelGrid columns="1">
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
-                    <h1>Edición de tarea</h1>
-                    <h4><b:label text="ID de Tarea" ></b:label> </h4>
+                    <h1><b:label severity="info" text="Creación / Edición de tarea"/></h1>
+                    <h4><b:label severity="info" text="ID de Tarea" ></b:label> </h4>
                             #{tareaBean.tarea.tareaPK.idTarea}
-                    <h4><b:label text="ID de Proyecto" ></b:label> </h4>
+                    <h4><b:label severity="info" text="ID de Proyecto" ></b:label> </h4>
                             #{tareaBean.tarea.tareaPK.idProyecto}
                     <h:form>
-                        <h4><b:label text="Nombre" ></b:label> </h4>
+                        <h4><b:label severity="info" text="Nombre" ></b:label> </h4>
                         <b:inputText value="#{tareaBean.tarea.nombre}" inline="true" field-size="md" size="24"/>
-                        <h4><b:label text="Descripción" ></b:label> </h4>
+                        <h4><b:label severity="info" text="Descripción" ></b:label> </h4>
                         <b:inputTextarea value="#{tareaBean.tarea.descripcion}" inline="true" field-size="lg" />
                         <div >
-                            <h4><b:label text="Estado" ></b:label> </h4>
+                            <h4><b:label severity="info" text="Estado" ></b:label> </h4>
                             <b:selectOneMenu value="#{tareaBean.tarea.estado}" inline="true" >
                                 <f:selectItem itemValue ="Por hacer" itemLabel="Por hacer"/>
                                 <f:selectItem itemValue="En proceso" itemLabel="En proceso"/>
@@ -37,7 +37,7 @@
                                 <f:selectItem itemValue="Testeando" itemLabel="Testeando"/>
                             </b:selectOneMenu>
                         </div>
-                        <h4><b:label text="Prioridad" ></b:label> </h4>
+                        <h4><b:label severity="info" text="Prioridad" ></b:label> </h4>
                         <b:selectOneMenu value="#{tareaBean.tarea.prioridad}" inline="true">
                             <f:selectItem itemValue="1" itemLabel="Baja"/>
                             <f:selectItem itemValue="2" itemLabel="Media"/>
