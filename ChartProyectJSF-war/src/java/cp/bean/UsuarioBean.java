@@ -18,6 +18,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -48,11 +49,15 @@ public class UsuarioBean implements Serializable {
     protected String errorRecuperar; //contendrá el texto del error por el que falló la recuperación de contraseña
     protected Proyecto proyectoSeleccionado; //proyecto que tiene seleccionado el usuario
     protected final String cadenaVacia=""; //cadena para usar en comparaciones
+    protected String errorEditar; //contendra el texto del error si se edita mal
+    protected String mostrarEmail2;
     
     public UsuarioBean() {
         errorLogin="";
         errorRegistro="";
         errorRecuperar="";
+        errorEditar = "";
+        mostrarEmail2 = "false";
     }
 
     public Usuario getUsuario() {
@@ -99,6 +104,22 @@ public class UsuarioBean implements Serializable {
         return emailIntroducido2;
     }
 
+    public String getErrorEditar() {
+        return errorEditar;
+    }
+
+    public void setErrorEditar(String errorEditar) {
+        this.errorEditar = errorEditar;
+    }
+
+    public String getMostrarEmail2() {
+        return mostrarEmail2;
+    }
+
+    public void setMostrarEmail2(String mostrarEmail2) {
+        this.mostrarEmail2 = mostrarEmail2;
+    }
+
     public void setEmailIntroducido2(String emailIntroducido2) {
         this.emailIntroducido2 = emailIntroducido2;
     }
@@ -125,14 +146,14 @@ public class UsuarioBean implements Serializable {
         Usuario user = usuarioFacade.getUsuarioPorNickname(this.usuarioIntroducido);
         if (passwordMalicioso()) //si hay caracteres maliciosos en el password
         {
-            errorLogin = "Error: La contraseña contiene caracteres no permitidos";
+            errorLogin = "La contraseña contiene caracteres no permitidos";
             redireccion = "index.xhtml";
         }
         else //comprobamos el pass con el del usuario recuperado de la BD
         {
             if (user==null) //si no se ha encontrado al usuario.
             {
-                errorLogin="El usuario Introducido no existe";
+                errorLogin="El usuario introducido no existe";
                 redireccion = "index.xhtml";
             }
             else
@@ -145,7 +166,7 @@ public class UsuarioBean implements Serializable {
                 }
                 else //si no coincide
                 {
-                    errorLogin = "Error: La contraseña es incorrecta";
+                    errorLogin = "La contraseña es incorrecta";
                     redireccion = "index.xhtml";
                 }
             }
@@ -351,7 +372,73 @@ public class UsuarioBean implements Serializable {
     public String getCadenaVacia() {
         return cadenaVacia;
     }
-
     
+    public void enventoEmail(AjaxBehaviorEvent e){
+        mostrarEmail2 = "true";
+    }
+    
+    public void eventoUsuario(AjaxBehaviorEvent e){
+        Usuario user = usuarioFacade.getUsuarioPorNickname(this.usuarioIntroducido);
+        if(usuarioIntroducido.equals("")){
+            errorLogin = "No has introducido usuario";
+        }else if(user == null){
+            errorLogin = "El usuario introducido no existe";
+        }else{
+           errorLogin = ""; 
+        }
+    }
+    
+    public void eventoPassword(AjaxBehaviorEvent e){
+        Usuario user = usuarioFacade.getUsuarioPorNickname(this.usuarioIntroducido);
+        if(usuarioIntroducido.equals("")){
+            errorLogin = "No has introducido usuario";
+        }else if(user == null){
+            errorLogin = "El usuario introducido no existe";
+        }else if (passwordMalicioso()){
+            errorLogin = "La contraseña contiene caracteres no permitidos";
+        }else{
+           errorLogin = ""; 
+        }
+    }
+    
+    public String irEditarPass(){
+        mostrarEmail2 = "false";
+        errorEditar = "";
+        return "/crearNuevoPassword.xhtml";
+    }
+
+    public String doEditar(){
+        control();
+        mostrarEmail2 = "false";
+        errorEditar = "";
+        String emailTemporal = usuarioFacade.getUsuarioPorNickname(usuario.getNickname()).getEmail();
+        String retorno = "/editarPerfil.xhtml";     
+        if(!usuario.getEmail().equals("") && usuario.getEmail() != null){
+            if(!usuario.getPregunta().equals("") && usuario.getPregunta() != null){
+                if(!usuario.getRespuesta().equals("") && usuario.getRespuesta() != null){
+                    if(emailIntroducido2 == null){
+                        usuario.setEmail(emailTemporal);
+                        usuarioFacade.edit(usuario);    //El usuario solo se modifica si todo es correcto
+                        retorno = "/perfil.xhtml";
+                    }else if((emailIntroducido2.equals("") && emailTemporal.equals(usuario.getEmail())) || emailIntroducido2.equals(usuario.getEmail())){
+                        usuarioFacade.edit(usuario);    //El usuario solo se modifica si todo es correcto
+                        retorno = "/perfil.xhtml";
+                    }else{
+                        errorEditar = "Email introducido no valido";
+                    }
+                }else{
+                    errorEditar = "Respuesta introducida no valida";
+                }
+            }else{
+                errorEditar = "Pregunta introducida no valida";
+            }
+        }else{
+            errorEditar = "Email introducido no valido";
+        }
+        emailIntroducido2 = "";
+        usuario = usuarioFacade.getUsuarioPorNickname(usuario.getNickname());   //Recargamos el usuario
+        
+        return retorno;
+    }
     
 }

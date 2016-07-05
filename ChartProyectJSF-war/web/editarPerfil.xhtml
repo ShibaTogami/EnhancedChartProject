@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Editar perfil</title>
+    </h:head>
+    <h:body style="padding: 60px; background-color: #4ab8e8">
+        <b:navBar brand="Chart Project" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:navLink value="Inicio" href="principal.xhtml"/>
+                <b:navLink value="Perfil" href="perfil.xhtml"></b:navLink>
+                <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container>
+             <b:jumbotron style="background-color: #b7e8f1">
+                 <b:container>
+        <h:form styleClass="form-signin" prependId="false">
+            <h2 class="form-signin-heading"><b:label text="Editar tu perfil" severity="info"/></h2>
+            <h3 class="form-signin-heading"><b:label text="Usuario: #{usuarioBean.usuario.nickname}" severity="info"/></h3>
+            
+            <b:inputText placeholder="Web" value="#{usuarioBean.usuario.webPersonal}">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="globe" />
+                </f:facet>
+            </b:inputText>
+            <b:inputText placeholder="Email" value="#{usuarioBean.usuario.email}">
+                <f:ajax event="click" render="emailR" listener="#{usuarioBean.enventoEmail}"/>
+                <f:facet name="prepend">
+                    <b:iconAwesome name="fa-envelope" />
+                </f:facet>
+            </b:inputText>
+            <h:panelGroup id="emailR">
+                <b:inputText placeholder="Repita email" value="#{usuarioBean.emailIntroducido2}" rendered="#{usuarioBean.mostrarEmail2}">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="fa-envelope-o" />
+                    </f:facet>
+                </b:inputText>
+            </h:panelGroup>
+            
+            <b:inputText placeholder="Pregunta secreta" value="#{usuarioBean.usuario.pregunta}">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="question-circle" />
+                </f:facet>
+            </b:inputText>
+            <b:inputText placeholder="Respuesta secreta" value="#{usuarioBean.usuario.respuesta}">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="question-circle" />
+                </f:facet>
+            </b:inputText>
+            <h:panelGroup id="mensajeError">
+                <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorEditar.equals('')}"><strong>Error:</strong> #{usuarioBean.errorEditar}</b:alert>
+            </h:panelGroup>
+            <b:commandButton icon-awesome="key" size="lg" value="Editar contraseña" action="#{usuarioBean.irEditarPass()}"/><br/><br/>
+            <b:commandButton icon-awesome="floppy-o" look="primary btn-block" size="lg" value="Guardar cambios" action="#{usuarioBean.doEditar()}">
+            </b:commandButton>
+        </h:form>
+                 </b:container>
+             </b:jumbotron>
+        </b:container>
+    </h:body>
+</html>
+

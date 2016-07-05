@@ -30,7 +30,7 @@
                 Ultima conexión: #{usuarioBean.usuario.ultimaConexion.toGMTString()}<br/>
                 <b:iconAwesome name="bar-chart-o"/>
                 Karma: #{usuarioBean.usuario.karma}<br/><br/>
-                <b:commandButton value="Logout" icon-awesome="fa-sign-out" action="#{usuarioBean.doLogout()}"/><br/><br/>
+                <b:button value="Editar perfil" icon-awesome="user" outcome="editarPerfil"/><br/><br/>
 
                 <b:panelGrid columns="2">
                     <b:dataTable value="#{usuarioBean.usuario.proyectoCollection}" var="proyectos" style="background-color: white">

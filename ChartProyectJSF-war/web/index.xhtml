@@ -27,25 +27,28 @@
         </center></pre>
         
         <h:form styleClass="form-signin-index">
-            <b:inputText placeholder="Usuario" size="20" value="#{usuarioBean.usuarioIntroducido}">
+            <b:inputText id="nombreE" placeholder="Usuario" size="20" value="#{usuarioBean.usuarioIntroducido}">
+                <f:ajax event="blur" render="error" execute="@this" listener="#{usuarioBean.eventoUsuario}"/>
                 <f:facet name="prepend">
                     <b:iconAwesome name="user"/>
                 </f:facet>
             </b:inputText><br/> 
             <b:inputSecret placeholder="Contraseña" size="20" value="#{usuarioBean.passwordIntroducido}">
+                <f:ajax event="blur" render="error" execute="@form" listener="#{usuarioBean.eventoPassword}"/>
                 <f:facet name="prepend">
                     <b:iconAwesome name="key" />
                 </f:facet>
             </b:inputSecret><br/>
             <b:commandButton look="info btn-block" icon-awesome="fa-sign-in" size="lg" action="#{usuarioBean.doLoguear()}" value="Log in"/><br/>
-            
             <center>
             <b:buttonGroup orientation="vertical">
                 <b:button value="Registro"  outcome="registro.xhtml" look="info btn-block"/>
                 <b:button value="Recuperar contraseña" outcome="recuperarPassword.xhtml" look="info btn-block"/>
             </b:buttonGroup> 
             </center><br/>
-            <b:alert severity="danger" rendered="#{!usuarioBean.errorLogin.equals('')}" closable="true"><strong>¡Error!</strong> #{usuarioBean.errorLogin}</b:alert>
+            <h:panelGroup id="error">
+                <b:alert severity="danger" rendered="#{!usuarioBean.errorLogin.equals('')}" closable="true"><strong>¡Error!</strong> #{usuarioBean.errorLogin}</b:alert>
+            </h:panelGroup>
         </h:form>
 
         #{usuarioBean.setErrorLogin("")}  
