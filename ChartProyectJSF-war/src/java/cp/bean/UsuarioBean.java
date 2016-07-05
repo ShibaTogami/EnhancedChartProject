@@ -10,6 +10,9 @@ import cp.entity.Proyecto;
 import cp.entity.Usuario;
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,6 +54,8 @@ public class UsuarioBean implements Serializable {
     protected final String cadenaVacia=""; //cadena para usar en comparaciones
     protected String errorEditar; //contendra el texto del error si se edita mal
     protected String mostrarEmail2;
+    protected String dirImagen;
+    protected String dirCuenta;
     
     public UsuarioBean() {
         errorLogin="";
@@ -82,6 +87,10 @@ public class UsuarioBean implements Serializable {
 
     public void setPasswordIntroducido(String passwordIntroducido) {
         this.passwordIntroducido = passwordIntroducido;
+    }
+
+    public String getDirCuenta() {
+        return dirCuenta;
     }
 
     public String getPasswordIntroducido2() {
@@ -261,6 +270,10 @@ public class UsuarioBean implements Serializable {
         return emailIntroducido.equals(emailIntroducido2);
     }
 
+    public String getDirImagen() {
+        return dirImagen;
+    }
+
     public String getErrorLogin() {
         return errorLogin;
     }
@@ -437,8 +450,53 @@ public class UsuarioBean implements Serializable {
         }
         emailIntroducido2 = "";
         usuario = usuarioFacade.getUsuarioPorNickname(usuario.getNickname());   //Recargamos el usuario
-        
         return retorno;
+    }
+    
+    public void direccionDeAvatar(){
+        String email = usuario.getEmail();
+        email = email.replace(" ", "");     //Elimino los espacios
+        email = email.toLowerCase();        //Pongo todas las letras en minusculas
+        //El tratamiento que ha recibido la cadena email es por exigencias de gravatar
+        //--Todo debe estar en minusculas y sin espacios--
+        String hash = hashEmail(email);     //Hago el hash
+        dirImagen = "https://www.gravatar.com/avatar/" + hash + ".jpg?size=150";
+    }
+    
+    public void direccionDeCuenta(){
+        String email = usuario.getEmail();
+        email = email.replace(" ", "");     //Elimino los espacios
+        email = email.toLowerCase();        //Pongo todas las letras en minusculas
+        //El tratamiento que ha recibido la cadena email es por exigencias de gravatar
+        //--Todo debe estar en minusculas y sin espacios--
+        String hash = hashEmail(email);     //Hago el hash
+        dirCuenta = "https://www.gravatar.com/" + hash;
+    }
+    
+    private String hashEmail(String entrada){
+        MessageDigest md5;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+
+            try {
+                md5.update(entrada.getBytes("UTF-8"));
+
+                byte[] digest = md5.digest();
+                StringBuffer sb = new StringBuffer();
+                for (int i = 0; i < digest.length; i++) {
+                    sb.append(String.format("%02x", digest[i]));
+                }
+                String hash = sb.toString();
+
+                return hash;
+                
+            } catch (UnsupportedEncodingException ex) {
+                
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            
+        }
+        return "";
     }
     
 }

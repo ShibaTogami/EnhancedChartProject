@@ -9,6 +9,7 @@
         <title>Perfil de usuario</title>
     </h:head>
     #{usuarioBean.control()}
+    #{usuarioBean.direccionDeAvatar()}
     <h:body style="margin-top: 60px; background-color:  #b7e8f1">
         <b:navBar brand="Chart Project" fixed="top" inverse="true">
             <b:navbarLinks>
@@ -20,6 +21,11 @@
         <b:container>
             <h:form>
                 <h3><b:label severity="info" text="Perfil de #{usuarioBean.usuario.nickname}"/></h3><br/>
+                
+                <h:panelGroup style="position: absolute; top: 100px; left: 70%">
+                    <b:image value="#{usuarioBean.dirImagen}"/>
+                </h:panelGroup>
+                    
                 <b:iconAwesome name="envelope"/>
                 Email: #{usuarioBean.usuario.email}<br/>
                 <b:iconAwesome name="globe"/>

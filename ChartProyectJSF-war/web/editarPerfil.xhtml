@@ -55,9 +55,11 @@
             <h:panelGroup id="mensajeError">
                 <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorEditar.equals('')}"><strong>Error:</strong> #{usuarioBean.errorEditar}</b:alert>
             </h:panelGroup>
-            <b:commandButton icon-awesome="key" size="lg" value="Editar contraseña" action="#{usuarioBean.irEditarPass()}"/><br/><br/>
-            <b:commandButton icon-awesome="floppy-o" look="primary btn-block" size="lg" value="Guardar cambios" action="#{usuarioBean.doEditar()}">
-            </b:commandButton>
+            <center>
+                <b:commandButton icon-awesome="key" size="lg" value="Editar contraseña" action="#{usuarioBean.irEditarPass()}"/> &nbsp;
+                <b:button icon-awesome="picture-o" size="lg" value="Crear o cambiar avatar" outcome="cambiarAvatar.xhtml"/>
+            </center><br/>
+            <b:commandButton icon-awesome="floppy-o" look="primary btn-block" size="lg" value="Guardar cambios" action="#{usuarioBean.doEditar()}"/>
         </h:form>
                  </b:container>
              </b:jumbotron>
