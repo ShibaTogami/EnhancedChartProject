@@ -32,6 +32,8 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class UsuarioBean implements Serializable {
 
+     
+    
     @EJB
     private UsuarioFacade usuarioFacade;
 
@@ -57,12 +59,39 @@ public class UsuarioBean implements Serializable {
     protected String dirImagen;
     protected String dirCuenta;
     
+    //propiedades de control de errores del registro en ajax
+    protected String nicknameNuevo;
+    private final String USUARIO_NO_CONSULTADO = "no consultado";
+    protected String color;
+    protected String nombreIcono;
+    private final String PASSWORD_NO_COMPROBADO = "no comprobado";
+    protected String passwordComprobado;
+    protected String colorPass;
+    protected String iconoPass;
+    private final String COLOR_BUENO = "#4ab8e8";
+    private final String COLOR_MALO = "darkred";
+    private final String ICONO_CHECK = "fa-check-circle";
+    private final String ICONO_ERROR = "fa-times";
+    protected String emailComprobado;
+    private final String EMAIL_NO_COMPROBADO = "email no comprobado";
+    protected String colorMail;
+    protected String iconoMail;
+    
+    
     public UsuarioBean() {
-        errorLogin="";
-        errorRegistro="";
-        errorRecuperar="";
+        errorLogin = "";
+        errorRegistro = "";
+        errorRecuperar = "";
         errorEditar = "";
         mostrarEmail2 = "false";
+        color = "grey";
+        nombreIcono = "";
+        passwordComprobado = PASSWORD_NO_COMPROBADO;
+        colorPass = "grey";
+        iconoPass = "";
+        emailComprobado = EMAIL_NO_COMPROBADO;
+        colorMail = "grey";
+        iconoMail = "";
     }
 
     public Usuario getUsuario() {
@@ -151,7 +180,7 @@ public class UsuarioBean implements Serializable {
 
     public String doLoguear()
     {
-        String redireccion = null;
+        String redireccion;
         Usuario user = usuarioFacade.getUsuarioPorNickname(this.usuarioIntroducido);
         if (passwordMalicioso()) //si hay caracteres maliciosos en el password
         {
@@ -188,7 +217,7 @@ public class UsuarioBean implements Serializable {
     
     public String doRegistrar() throws InterruptedException
     {
-        String salida="";
+        String salida;
         if (usuarioIntroducido.equals("") || emailIntroducido.equals("") || emailIntroducido2.equals("") 
            || passwordIntroducido.equals("") || passwordIntroducido2.equals("") || preguntaSecretaIntroducida.equals("") 
            || respuestaSecretaIntroducida.equals(""))
@@ -261,6 +290,22 @@ public class UsuarioBean implements Serializable {
         return salida;
     }
 
+    public void comprobarPasswordAjax() {
+        //metodo que comprueba que ambos passwords introducidos en el registro coinciden
+        passwordComprobado = "comprobado";
+        boolean resultado = passwordIntroducido.equals(passwordIntroducido2);
+        if (resultado) //si coinciden
+        {
+            colorPass = COLOR_BUENO;
+            iconoPass = ICONO_CHECK;
+        }
+        else //si no
+        {
+            colorPass = COLOR_MALO;
+            iconoPass = ICONO_ERROR;
+        }
+    }
+    
     private boolean comprobarPassword() {
         //metodo que comprueba que ambos passwords introducidos en el registro coinciden
         return passwordIntroducido.equals(passwordIntroducido2);
@@ -268,6 +313,21 @@ public class UsuarioBean implements Serializable {
 
     private boolean comprobarEmail() {
         return emailIntroducido.equals(emailIntroducido2);
+    }
+    
+    public void comprobarEmailAjax() {
+        emailComprobado = "comprobado";
+        boolean resultado = emailIntroducido.equals(emailIntroducido2);
+        if (resultado)
+        {
+            colorMail = COLOR_BUENO;
+            iconoMail = ICONO_CHECK;
+        }
+        else
+        {
+            colorMail = COLOR_MALO;
+            iconoMail = ICONO_ERROR;
+        }
     }
 
     public String getDirImagen() {
@@ -498,5 +558,93 @@ public class UsuarioBean implements Serializable {
         }
         return "";
     }
+    
+    public void comprobarNombreUsuario ()
+    {
+        if (usuarioFacade.find(usuarioIntroducido)!=null)
+        {
+            color=COLOR_MALO;
+            nombreIcono = ICONO_ERROR;
+        }
+        else
+        {
+            color=COLOR_BUENO;
+            nombreIcono=ICONO_CHECK;
+        }
+    }
+
+    public String getNicknameNuevo() {
+        return nicknameNuevo;
+    }
+
+    public void setNicknameNuevo(String nicknameNuevo) {
+        this.nicknameNuevo = nicknameNuevo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getNombreIcono() {
+        return nombreIcono;
+    }
+
+    public String getUSUARIO_NO_CONSULTADO() {
+        return USUARIO_NO_CONSULTADO;
+    }
+
+    public String getPASSWORD_NO_COMPROBADO() {
+        return PASSWORD_NO_COMPROBADO;
+    }
+
+    public String getPasswordComprobado() {
+        return passwordComprobado;
+    }
+
+    public String getColorPass() {
+        return colorPass;
+    }
+
+    public String getIconoPass() {
+        return iconoPass;
+    }
+
+    public String getCOLOR_BUENO() {
+        return COLOR_BUENO;
+    }
+
+    public String getCOLOR_MALO() {
+        return COLOR_MALO;
+    }
+
+    public String getICONO_CHECK() {
+        return ICONO_CHECK;
+    }
+
+    public String getICONO_ERROR() {
+        return ICONO_ERROR;
+    }
+
+    public String getEmailComprobado() {
+        return emailComprobado;
+    }
+
+
+
+    public String getColorMail() {
+        return colorMail;
+    }
+
+    public String getEMAIL_NO_COMPROBADO() {
+        return EMAIL_NO_COMPROBADO;
+    }
+
+
+
+    public String getIconoMail() {
+        return iconoMail;
+    }
+
+
     
 }

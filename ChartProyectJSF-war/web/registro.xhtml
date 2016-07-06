@@ -18,32 +18,43 @@
                         <h:form styleClass="form-signin" prependId="false">
                             <h2 class="form-signin-heading"><b:label text="Registra tus datos" severity="info"/></h2>
 
-                            <b:inputText id="nickname" placeholder="Nickname" size="20" value="#{usuarioBean.usuarioIntroducido}" >
+                            <b:inputText onblur="ajax:usuarioBean.comprobarNombreUsuario();" update="@this" id="nickname" placeholder="Nickname" size="20" value="#{usuarioBean.usuarioIntroducido}" > 
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="user" />
                                 </f:facet>
+                                <f:facet name="append">
+                                    <b:iconAwesome style="color:${usuarioBean.color}"  name="${usuarioBean.nombreIcono}" rendered="#{!usuarioBean.nicknameNuevo.equals(usuarioBean.USUARIO_NO_CONSULTADO)}"/> 
+                                </f:facet>
                             </b:inputText>
+                            
 
                             <b:inputSecret id="password" placeholder="Password" type="password" size="20"  value="#{usuarioBean.passwordIntroducido}">
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="key" />
                                 </f:facet>
                             </b:inputSecret>
-                            <b:inputSecret id="passwordToValidate" placeholder="Repetir password" type="password" size="20"   value="#{usuarioBean.passwordIntroducido2}">
+                            <b:inputSecret onblur="ajax:usuarioBean.comprobarPasswordAjax()" update="@this" id="passwordToValidate" placeholder="Repetir password" type="password" size="20"   value="#{usuarioBean.passwordIntroducido2}">
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="key" />
+                                </f:facet>
+                                <f:facet name="append">
+                                    <b:iconAwesome style="color:${usuarioBean.colorPass}"  name="${usuarioBean.iconoPass}" rendered="#{!usuarioBean.passwordComprobado.equals(usuarioBean.PASSWORD_NO_COMPROBADO)}"/> 
                                 </f:facet>
                             </b:inputSecret>
 
 
-                            <b:inputText id="email" placeholder="Correo Electrónico" size="20"   value="#{usuarioBean.emailIntroducido}">
+                            <b:inputText id="email" placeholder="Correo Electrónico" size="20"   value="#{usuarioBean.emailIntroducido}"> 
+                                
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="fa-envelope" />
                                 </f:facet>
                             </b:inputText>
-                            <b:inputText id="emailToValidate" placeholder="Repetir Correo Electronico" size="20"  value="#{usuarioBean.emailIntroducido2}">
+                            <b:inputText onblur="ajax:usuarioBean.comprobarEmailAjax()" update="@this" id="emailToValidate" placeholder="Repetir Correo Electronico" size="20"  value="#{usuarioBean.emailIntroducido2}">
                                 <f:facet name="prepend">
                                     <b:iconAwesome name="fa-envelope-o" />
+                                </f:facet>
+                                <f:facet name="append">
+                                    <b:iconAwesome style="color:${usuarioBean.colorMail}"  name="${usuarioBean.iconoMail}" rendered="#{!usuarioBean.emailComprobado.equals(usuarioBean.EMAIL_NO_COMPROBADO)}"/> 
                                 </f:facet>
                             </b:inputText>
 
