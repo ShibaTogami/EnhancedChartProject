@@ -276,6 +276,8 @@ public class UsuarioBean implements Serializable {
             errorRegistro = "Error: Ese usuario ya había sido registrado.";
             salida = "registro.xhtml";
         }
+        passwordComprobado = PASSWORD_NO_COMPROBADO;
+        iconoPass="";
         return salida;
     }
 
