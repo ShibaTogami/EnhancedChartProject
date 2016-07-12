@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Chart Project (Versión JSF)</title>
         <style type="text/css">
@@ -25,7 +26,7 @@
         <pre class="chh"><center>
         <b:image value="chartlogo5.png"/>
         </center></pre>
-        
+
         <h:form styleClass="form-signin-index">
             <b:inputText id="nombreE" placeholder="Usuario" size="20" value="#{usuarioBean.usuarioIntroducido}">
                 <f:ajax event="blur" render="error" execute="@this" listener="#{usuarioBean.eventoUsuario}"/>
@@ -41,17 +42,18 @@
             </b:inputSecret><br/>
             <b:commandButton look="info btn-block" icon-awesome="fa-sign-in" size="lg" action="#{usuarioBean.doLoguear()}" value="Log in"/><br/>
             <center>
-            <b:buttonGroup orientation="vertical">
-                <b:button value="Registro"  outcome="registro.xhtml" look="info btn-block"/>
-                <b:button value="Recuperar contraseña" outcome="recuperarPassword.xhtml" look="info btn-block"/>
-            </b:buttonGroup> 
+                <b:buttonGroup orientation="vertical">
+                    <b:button value="Registro"  outcome="registro.xhtml" look="info btn-block"/>
+                    <b:button value="Recuperar contraseña" outcome="recuperarPassword.xhtml" look="info btn-block"/>
+                </b:buttonGroup> 
             </center><br/>
             <h:panelGroup id="error">
-                <b:alert severity="danger" rendered="#{!usuarioBean.errorLogin.equals('')}" closable="true"><strong>¡Error!</strong> #{usuarioBean.errorLogin}</b:alert>
+                <b:alert severity="danger" rendered="#{!usuarioBean.errorLogin.equals('')}" closable="true"> <p:effect type="pulsate" event="load" delay="500"/> <strong>¡Error!</strong> #{usuarioBean.errorLogin}</b:alert>
             </h:panelGroup>
         </h:form>
 
         #{usuarioBean.setErrorLogin("")}  
+        <br />
     </h:body>
 </html>
 

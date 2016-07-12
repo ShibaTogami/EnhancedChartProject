@@ -3,15 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Chart Project: Registro de Usuario</title>
     </h:head>
    
         
      <h:body style="padding: 60px; background-color: #4ab8e8">
-        <b:container>
-            <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorRegistro.equals(usuarioBean.cadenaVacia)}"> #{usuarioBean.errorRegistro}</b:alert>
+         <b:container>
+         <h:form>
+            <p:breadCrumb style="background-color: #b7e8f1">
+                <p:menuitem value="Categories" url="index.xhtml"/>
+                <p:menuitem value="Registro"/>
+            </p:breadCrumb>
+         </h:form>
+         <br/>
+        
+            <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorRegistro.equals(usuarioBean.cadenaVacia)}"><p:effect type="pulsate" event="load" delay="500"/> #{usuarioBean.errorRegistro}</b:alert>
             <b:jumbotron style="background-color: #b7e8f1">
                     <b:container>
 
