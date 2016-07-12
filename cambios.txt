@@ -1,0 +1,9 @@
+cambios añadidos al proyecto:
+Con ajax:
+ - Verificación de nickname en uso durante el registro
+ - Verificación de coincidencia del password al hacer blur en registro
+ - Verificación de coincidencia de mails al hacer blur en registro
+ - Verificación de coincidencia de passwords al recuperar la contraseña.
+Con primeFaces:
+ - Añadidos efectos a las alertas de registro, login y creación de contraseña.
+ - Creación de barra de navegación para que el usuario tenga una referencia de donde se encuentra en todo momento.

@@ -62,7 +62,7 @@
                 </f:facet>
             </b:inputText>
             <h:panelGroup id="mensajeError">
-                <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorEditar.equals('')}"><strong>Error:</strong> #{usuarioBean.errorEditar}</b:alert>
+                <b:alert severity="danger" closable="true" rendered="#{!usuarioBean.errorEditar.equals('')}"><p:effect type="pulsate" event="load" delay="500"/> <strong>Error:</strong> #{usuarioBean.errorEditar}</b:alert>
             </h:panelGroup>
             <center>
                 <b:commandButton icon-awesome="key" size="lg" value="Editar contraseña" action="#{usuarioBean.irEditarPass()}"/> &nbsp;
