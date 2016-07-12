@@ -22,6 +22,9 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -125,6 +128,9 @@ public class ProyectoBean implements Serializable {
 
     public void setProyectoSeleccionado(BigDecimal idProyecto) {
         this.proyectoSeleccionado = proyectoFacade.findByIdProyecto(idProyecto);
+       FacesContext context2 = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context2.getExternalContext().getSession(true);
+        session.setAttribute("proyectoSeleccionado", idProyecto);
     }
      
     public String buscarUsuarios(){

@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tarea.findByDescripcion", query = "SELECT t FROM Tarea t WHERE t.descripcion = :descripcion"),
     @NamedQuery(name = "Tarea.findByChangeLog", query = "SELECT t FROM Tarea t WHERE t.changeLog = :changeLog"),
     @NamedQuery(name = "Tarea.findByEstado", query = "SELECT t FROM Tarea t WHERE t.estado = :estado"),
+    @NamedQuery(name = "Tarea.findByEstadoYProyecto", query = "SELECT t FROM Tarea t WHERE t.estado = :estado AND t.tareaPK.idProyecto = :idProyecto"),
     @NamedQuery(name = "Tarea.findByPrioridad", query = "SELECT t FROM Tarea t WHERE t.prioridad = :prioridad"),
     @NamedQuery(name = "Tarea.findByIdProyecto", query = "SELECT t FROM Tarea t WHERE t.tareaPK.idProyecto = :idProyecto")})
 public class Tarea implements Serializable {

@@ -6,9 +6,12 @@
 package cp.ejb;
 
 import cp.entity.Tarea;
+import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext; 
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,16 @@ public class TareaFacade extends AbstractFacade<Tarea> {
 
     public TareaFacade() {
         super(Tarea.class);
+    }
+    
+    public List<Tarea> findByEstado(String estado, BigDecimal numProyecto) {
+        Query q;
+        
+        q = em.createNamedQuery("Tarea.findByEstadoYProyecto");
+        q.setParameter("estado", estado);
+        q.setParameter("idProyecto", numProyecto);
+        
+        return q.getResultList();
     }
     
 }

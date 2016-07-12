@@ -30,6 +30,7 @@
                     <p:menuitem value="Principal" url="principal.xhtml"/>
                     <p:menuitem value="#{proyectoBean.proyectoSeleccionado.nombre}"/>
                 </p:breadCrumb> 
+                <h:panelGrid columns="2">
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px;">
                     <h3><b:label severity="info" text="Proyecto: #{proyectoBean.proyectoSeleccionado.nombre}"></b:label></h3><br/>
                     <b:iconAwesome name="fa-calendar" style="margin-right: 2px"/>Fecha de creación: #{proyectoBean.proyectoSeleccionado.fechaInicio}<br/>
@@ -37,6 +38,8 @@
                     <b:iconAwesome name="fa-terminal" style="margin-right: 2px"/>Descripción:<br/>
                     #{proyectoBean.proyectoSeleccionado.descripcion}<br/>
                 </h:panelGroup>
+                    <p:chart type="bar" model="#{chartViewBean.animatedModel2}" style="width:400px; height: 200px; right: 10px; top: -1px; position: absolute;" />
+                </h:panelGrid>
             </b:panelGrid>
         </b:container>
         <b:container>
