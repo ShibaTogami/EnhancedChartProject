@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Editar perfil</title>
     </h:head>
@@ -17,6 +18,14 @@
             </b:navbarLinks>
         </b:navBar>
         <b:container>
+            <h:form>
+            <p:breadCrumb style="background-color: #b7e8f1">
+                <p:menuitem value="Categories" url="principal.xhtml"/>
+                <p:menuitem value="Perfil" url="perfil.xhtml"/>
+                <p:menuitem value="Editar perfil"/>
+            </p:breadCrumb>
+            </h:form>
+            <br/>         
              <b:jumbotron style="background-color: #b7e8f1">
                  <b:container>
         <h:form styleClass="form-signin" prependId="false">

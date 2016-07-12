@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Cambiar avatar</title>
     </h:head>
@@ -19,6 +20,15 @@
             </b:navbarLinks>
         </b:navBar>
         <b:container>
+            <h:form>
+            <p:breadCrumb style="background-color: #b7e8f1">
+                <p:menuitem value="Categories" url="principal.xhtml"/>
+                <p:menuitem value="Perfil" url="perfil.xhtml"/>
+                <p:menuitem value="Editar perfil" url="editarPerfil.xhtml"/>
+                <p:menuitem value="Editar avatar"/>
+            </p:breadCrumb>
+            </h:form>
+            <br/>   
             <b:jumbotron style="background-color: #b7e8f1">
                 <b:container>
                     <h2 class="form-signin-heading"><b:label text="Avatar" severity="info"/></h2><br/>
@@ -27,8 +37,8 @@
                     La imagen de perfil que se muestra es la que tienes configurada en tu cuenta de Gravatar, en caso de no tenerla aparece esta imagen: <b:image value="https://www.gravatar.com/avatar/example?size=50"/><br/>
                     <b>Gravatar</b> es una plataforma gratuita en la que puedes alojar tus avatares. Es utilizada por webs muy conocidas.<br/><br/>
                     Si ya tienes una cuenta de Gravatar y deseas cambiar tu imagen de perfil haz clic <a href="#{usuarioBean.dirCuenta}"><b>aquí</b></a><br/>
-                    Si deseas cambiar tu email por uno que sí está vinculado con Gravatar has clic <b><h:link value="aquí" outcome="editarPerfil.xhtml"/></b><br/>
-                    Si no tienes cuena haz clic <a href="https://es.gravatar.com/"><b>aquí</b></a><br/><br/>
+                    Si deseas cambiar tu email por uno que sí está vinculado con Gravatar haz clic <b><h:link value="aquí" outcome="editarPerfil.xhtml"/></b><br/>
+                    Si no tienes cuenta de Gravatar haz clic <a href="https://es.gravatar.com/"><b>aquí</b></a><br/><br/>
                     <b:button value="Volver" size="lg" outcome="perfil.xhtml" look="info btn-block"/>
                 </b:container>
             </b:jumbotron>

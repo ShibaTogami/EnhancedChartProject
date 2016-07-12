@@ -4,7 +4,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Perfil de usuario</title>
     </h:head>
@@ -20,9 +21,16 @@
         </b:navBar>
         <b:container>
             <h:form>
+            <p:breadCrumb style="background-color: #4ab8e8">
+                <p:menuitem value="Categories" url="principal.xhtml"/>
+                <p:menuitem value="Perfil"/>
+            </p:breadCrumb>
+            </h:form>
+            <br/>
+            <h:form>
                 <h3><b:label severity="info" text="Perfil de #{usuarioBean.usuario.nickname}"/></h3><br/>
                 
-                <h:panelGroup style="position: absolute; top: 100px; left: 70%">
+                <h:panelGroup style="position: absolute; top: 150px; left: 70%">
                     <b:image value="#{usuarioBean.dirImagen}"/>
                 </h:panelGroup>
                     
