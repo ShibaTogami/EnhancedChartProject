@@ -5,7 +5,8 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Proyectos</title>
     </h:head>
@@ -24,8 +25,10 @@
             <b:panel title="Proyectos" style="width: 100%; background-color: #f6f8fa;  ">
                 <b:panelGrid columns="4">
                     <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
-                        <h:column> 
-                            <b:panel title="#{proyecto.nombre}" onclick="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"  look="info" collapsible="true" style="width: 100%;">
+                        <h:column>
+                            
+                            
+                            <b:panel id="panel#{proyecto.idProyecto}" title="#{proyecto.nombre}" onclick="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"  look="info" collapsible="true" style="width: 100%;">
                                 <h:commandLink value="#{proyecto.descripcion}" action="#{proyectoBean.doMostrar(proyecto.idProyecto, usuarioBean)}"/>
                                 <f:facet name="footer">
                                     <c:forEach items="#{proyecto.usuarioCollection}" var="participante">
@@ -33,6 +36,7 @@
                                     </c:forEach>
                                 </f:facet>
                             </b:panel>
+                            <p:draggable for="panel#{proyecto.idProyecto}" revert="true" />
                         </h:column>
                     </c:forEach>
                 </b:panelGrid>

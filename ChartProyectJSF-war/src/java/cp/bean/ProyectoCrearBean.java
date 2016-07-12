@@ -128,6 +128,13 @@ public class ProyectoCrearBean {
         return "principal";
     }
     
+    public String doEliminarParticipante(Usuario usuario) {
+        if(participantes.contains(usuario)) {
+            participantes.remove(usuario);
+        }
+        return "nuevoProyecto";
+    }
+    
     public String doCrear(Usuario lider) {
         Date date = new Date();
         proyecto.setEstado("En Proceso");

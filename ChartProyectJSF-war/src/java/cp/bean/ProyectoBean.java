@@ -51,6 +51,7 @@ public class ProyectoBean implements Serializable {
     protected List<Usuario> usuariosEncontrados;
     protected List<Usuario> seleccion;
     protected String comentario;
+    protected int num;
 
     public String getComentario() {
         return comentario;
@@ -59,6 +60,15 @@ public class ProyectoBean implements Serializable {
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+    
 
     public UsuarioBean getUsuarioBean() {
         return usuarioBean;
@@ -94,6 +104,10 @@ public class ProyectoBean implements Serializable {
         this.usuarioBuscar = usuarioBuscar;
     }
     
+    public int aumentar() {
+        num++;
+        return num;
+    }
     
     /**
      * Creates a new instance of ProyectoBean
@@ -102,7 +116,7 @@ public class ProyectoBean implements Serializable {
     @PostConstruct
     public void Init(){
         seleccion = new ArrayList<Usuario>();
-        
+        this.num = 1;
     }
     
     public ProyectoBean() {
