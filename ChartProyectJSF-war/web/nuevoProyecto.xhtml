@@ -54,7 +54,7 @@
 
 
                         <h4><b:label severity="info" text="Añadir participante"/></h4>
-                        <p:autoComplete id="participanteNuevo" value="#{proyectoCrearBean.participanteNuevo}" completeMethod="#{proyectoCrearBean.pillarUsuarios}"/>
+                        <p:autoComplete id="participanteNuevo" value="#{proyectoCrearBean.participanteNuevo}" completeMethod="#{proyectoCrearBean.pillarUsuarios}"/>&nbsp;&nbsp;
                         <b:commandButton value="Añadir" ajax="true" action="#{proyectoCrearBean.doAñadirParticipante(usuarioBean.usuario)}">
                             <f:ajax execute="participanteNuevo" render="tabla participanteNuevo fallo"/>
                         </b:commandButton>

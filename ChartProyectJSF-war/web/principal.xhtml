@@ -13,7 +13,7 @@
     <h:body style="margin-top: 60px; background-color:  #b7e8f1 "> 
 
         <b:container>
-        <h2><b:label severity="info" text="Tus proyectos actuales"></b:label></h2><br/>
+       
         <h:form>
             <b:navBar brand="Chart Project" fixed="top" inverse="true">
                 <b:navbarLinks>
@@ -29,6 +29,8 @@
                 </p:breadCrumb>
             </h:form>
             <br/>
+            <h2><b:label severity="info" text="Tus proyectos actuales"></b:label></h2><br/>
+            
             <b:panel title="Proyectos" style="width: 100%; background-color: #f6f8fa;  ">
                 <b:panelGrid columns="4">
                     <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
