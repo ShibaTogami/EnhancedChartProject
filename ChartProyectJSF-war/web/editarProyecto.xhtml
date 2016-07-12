@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Editar Proyecto</title>
     </h:head>
@@ -15,8 +16,19 @@
                 <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
             </b:navbarLinks>
         </b:navBar>
+        <b:container>
+        <h:form>
+                <p:breadCrumb style="background-color: #4ab8e8;">
+                    <p:menuitem value="Categories" url="index.xhtml"/>
+                    <p:menuitem value="Principal" url="principal.xhtml"/>
+                    <p:menuitem value="#{proyectoBean.proyectoSeleccionado.nombre}" action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}"/>
+                    <p:menuitem value="Editando proyecto"/>
+                </p:breadCrumb> 
+                <br/>
+            </h:form>
         <b:panelGrid columns="3">
-            <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
+            <h:panelGroup style="display:block; text-align: left;">
+                
                 <h1><b:label severity="info" text="Editando el Proyecto:"/></h1>
                 <h:form>
                     <h4><b:label severity="info" text="ID" ></b:label> </h4>
@@ -36,6 +48,7 @@
                 </h:form>
             </h:panelGroup>
         </b:panelGrid>
+        </b:container>
     </h:body>
 </html>
 

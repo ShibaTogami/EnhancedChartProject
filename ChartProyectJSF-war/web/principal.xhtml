@@ -10,7 +10,7 @@
     <h:head>
         <title>Proyectos</title>
     </h:head>
-    <h:body style="margin-top: 60px; background-color:  #b7e8f1 ">
+    <h:body style="margin-top: 60px; background-color:  #b7e8f1 "> 
 
         <b:container>
         <h2><b:label severity="info" text="Tus proyectos actuales"></b:label></h2><br/>
@@ -22,6 +22,13 @@
                     <b:navLink value="Cerrar Sesión" action="#{usuarioBean.doLogout()}" href="index.xhtml"></b:navLink>
                 </b:navbarLinks>
             </b:navBar>
+            <h:form>
+                <p:breadCrumb style="background-color: #4ab8e8">
+                    <p:menuitem value="Categories" url="index.xhtml"/>
+                    <p:menuitem value="Principal"/>
+                </p:breadCrumb>
+            </h:form>
+            <br/>
             <b:panel title="Proyectos" style="width: 100%; background-color: #f6f8fa;  ">
                 <b:panelGrid columns="4">
                     <c:forEach items="#{usuarioBean.usuario.proyectoCollection}" var="proyecto">
@@ -36,7 +43,7 @@
                                     </c:forEach>
                                 </f:facet>
                             </b:panel>
-                            <p:draggable for="panel#{proyecto.idProyecto}" revert="true" />
+                            <p:draggable for="panel#{proyecto.idProyecto}" revert="true" /> 
                         </h:column>
                     </c:forEach>
                 </b:panelGrid>

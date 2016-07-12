@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Crear/Editar Tarea</title>
     </h:head>
@@ -17,6 +18,15 @@
         </b:navBar>
         <b:container>
             <b:panelGrid columns="1">
+                <h:form>
+            <p:breadCrumb style="background-color: #4ab8e8; margin-left: 12px">
+                    <p:menuitem value="Categories" url="index.xhtml"/>
+                    <p:menuitem value="Principal" url="principal.xhtml"/>
+                    <p:menuitem value="#{proyectoBean.proyectoSeleccionado.nombre}" action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}"/>
+                    <p:menuitem value="Creación/Edición"/>
+            </p:breadCrumb> 
+                <br/>
+            </h:form>
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
                     <h1><b:label severity="info" text="Creación / Edición de tarea"/></h1>
                     <h4><b:label severity="info" text="ID de Tarea" ></b:label> </h4>

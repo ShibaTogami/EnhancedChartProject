@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Chart Project - Comentario</title>
     </h:head>
@@ -15,6 +16,15 @@
             </b:navbarLinks>
         </b:navBar>
         <b:container>
+            <h:form>
+            <p:breadCrumb style="background-color: #4ab8e8;">
+                    <p:menuitem value="Categories" url="index.xhtml"/>
+                    <p:menuitem value="Principal" url="principal.xhtml"/>
+                    <p:menuitem value="#{proyectoBean.proyectoSeleccionado.nombre}" action="#{proyectoBean.doMostrar(proyectoBean.proyectoSeleccionado.idProyecto, usuarioBean)}"/>
+                    <p:menuitem value="Nuevo comentario"/>
+            </p:breadCrumb> 
+                <br/>
+            </h:form>
             <h:form>
                 <h1><b:label severity="info" text="Añada su comentario"/></h1><br/>
                 <b:inputTextarea value="#{comentarioBean.comentario.texto}"/><br/>

@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <title>Proyecto</title>
@@ -20,7 +21,15 @@
         <h:form>
 
         <b:container style="margin-top: 60px;" >
+            
+                
+            
             <b:panelGrid columns="1">
+                <p:breadCrumb style="background-color: #4ab8e8; margin-left: 11px">
+                    <p:menuitem value="Categories" url="index.xhtml"/>
+                    <p:menuitem value="Principal" url="principal.xhtml"/>
+                    <p:menuitem value="#{proyectoBean.proyectoSeleccionado.nombre}"/>
+                </p:breadCrumb> 
                 <h:panelGroup style="display:block; text-align: left; margin-left: 10px;">
                     <h3><b:label severity="info" text="Proyecto: #{proyectoBean.proyectoSeleccionado.nombre}"></b:label></h3><br/>
                     <b:iconAwesome name="fa-calendar" style="margin-right: 2px"/>Fecha de creación: #{proyectoBean.proyectoSeleccionado.fechaInicio}<br/>
@@ -58,7 +67,8 @@
                                 #{comentario.texto}<br/>
                             </h:column> 
                         </b:dataTable><br/>
-                        <b:commandButton icon-awesome="fa-pencil-square-o" value="Añadir Comentario" action="#{comentarioBean.setProyectoBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" style="margin-bottom: 10px" /><br/>
+                        <b:commandButton icon-awesome="fa-pencil-square-o" value="Añadir Comentario" action="#{comentarioBean.setProyectoBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" style="margin-bottom: 10px" />&nbsp;
+                        <b:commandButton icon-awesome="fa-pencil-square-o" value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" style="margin-bottom: 10px" /><br/>
                     </h:panelGroup>
                     <h:panelGroup style="display:block; text-align: left; margin-right: 10px">
                         <b:dataTable value="#{proyectoBean.proyectoSeleccionado.tareaCollection}" var="tarea" style="background-color: white">
@@ -70,7 +80,7 @@
                                 <h:commandLink action="#{tareaBean.doEncontrarTarea(tarea, proyectoBean)}" value="#{tarea.nombre}"/><br/>
                             </h:column> 
                         </b:dataTable><br/>
-                        <b:commandButton icon-awesome="fa-pencil-square-o" value="Añadir tarea" action="#{tareaBean.setProyectoUsuarioBean(proyectoBean, usuarioBean)}" rendered="#{proyectoBean.doRenderizar2()}" style="margin-bottom: 10px" /><br/>
+        
                         <b:dataTable value="#{proyectoBean.proyectoSeleccionado.comentarioCollection1}" var="timeline" style="background-color: white">
                             <h:column>
                                 <f:facet name="header">
