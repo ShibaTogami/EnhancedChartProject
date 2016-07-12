@@ -293,7 +293,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "cp.entity.Usuario[ nickname=" + nickname + " ]";
+        return nickname;
     }
     
 }

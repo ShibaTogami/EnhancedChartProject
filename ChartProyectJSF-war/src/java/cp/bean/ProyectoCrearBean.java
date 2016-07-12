@@ -41,6 +41,8 @@ public class ProyectoCrearBean {
     protected String error;
     protected boolean errorActivo;
     protected Proyecto proyecto;
+    protected List<Usuario> todosLosUsuarios;
+    
 
     
     /**
@@ -57,6 +59,7 @@ public class ProyectoCrearBean {
         this.participantes = new ArrayList();
         error="";
         errorActivo = false;
+        todosLosUsuarios = usuarioFacade.findAll();
     }
 
     public boolean isErrorActivo() {
@@ -123,6 +126,8 @@ public class ProyectoCrearBean {
         return "nuevoProyecto"; 
     }
     
+   
+    
     public String doCancelar() {
         this.init();
         return "principal";
@@ -172,5 +177,23 @@ public class ProyectoCrearBean {
         //Arreglar el tema del ID
         this.init();
         return "principal";
+    }
+
+    public List<Usuario> getTodosLosUsuarios() {
+        return todosLosUsuarios;
+    }
+    
+    public List<Usuario> pillarUsuarios (String consulta)
+    {
+        consulta = consulta.toLowerCase();
+        List<Usuario> listaFiltrada = new ArrayList<>();
+        for (Usuario auxiliar : todosLosUsuarios)
+        {
+            if (auxiliar.getNickname().toLowerCase().contains(consulta))
+            {
+                listaFiltrada.add(auxiliar);
+            }
+        }
+        return listaFiltrada;
     }
 }

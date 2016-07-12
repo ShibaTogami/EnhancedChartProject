@@ -21,8 +21,16 @@
         </b:navBar>
         
         <b:container>
+            <h:form>
+                <p:breadCrumb style="background-color: #4ab8e8">
+                    <p:menuitem value="Categories" url="index.xhtml"/>
+                    <p:menuitem value="Principal" url="principal.xhtml"/>
+                    <p:menuitem value="Nuevo Proyecto"/>
+                </p:breadCrumb>
+             </h:form>
+             <br/>
             <b:panelGrid columns="1">
-                <h:panelGroup style="display:block; text-align: left; margin-left: 10px">
+                <h:panelGroup style="display:block; text-align: left">
                     <h2><b:label severity="info" text="Crear proyecto"/></h2>
                     <h:panelGroup id="fallo">
                     <b:alert id="alerta" severity="danger" rendered="#{proyectoCrearBean.errorActivo}" title="¡Error!" style="width: 30%">#{proyectoCrearBean.error}
@@ -32,13 +40,6 @@
                     <h:form>
                         <h4><b:label severity="info" text="Nombre" /></h4> <b:inputText value="#{proyectoCrearBean.proyecto.nombre}" inline="true" field-size="md" size="24"/> <br/>
                         <h4><b:label severity="info" text="Participantes"/></h4> 
-                       <!-- <table name="ajax2">
-                            <ui:repeat var="participante" value="#{proyectoCrearBean.participantes}" varStatus="status">
-                                <tr>
-                                    <td style="color:#474CE8; font-weight: 700">#{participante.nickname}</td>
-                                </tr>
-                            </ui:repeat>
-                        </table> -->
                        <h:dataTable id="tabla" value="#{proyectoCrearBean.participantes}" var="participante">
                             <h:column>
                             #{participante.nickname}&nbsp;
@@ -53,7 +54,7 @@
 
 
                         <h4><b:label severity="info" text="Añadir participante"/></h4>
-                        <b:inputText id="participanteNuevo" inline="true" field-size="md" value="#{proyectoCrearBean.participanteNuevo}" size="24"/> <br/>
+                        <p:autoComplete id="participanteNuevo" value="#{proyectoCrearBean.participanteNuevo}" completeMethod="#{proyectoCrearBean.pillarUsuarios}"/>
                         <b:commandButton value="Añadir" ajax="true" action="#{proyectoCrearBean.doAñadirParticipante(usuarioBean.usuario)}">
                             <f:ajax execute="participanteNuevo" render="tabla participanteNuevo fallo"/>
                         </b:commandButton>
